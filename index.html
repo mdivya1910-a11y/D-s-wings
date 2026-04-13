@@ -6,15 +6,20 @@
 <title>My Wings | Divya</title>
 
 <style>
+/* =========================
+   BASE SYSTEM (APPLE CLEAN)
+========================= */
 body {
   margin: 0;
-  font-family: system-ui, Arial;
-  background: #05060c;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, Arial;
+  background: radial-gradient(circle at top, #0b1020, #05060c 60%, #000);
   color: white;
   overflow-x: hidden;
 }
 
-/* SAFE INTRO (NON-BLOCKING) */
+/* =========================
+   NETFLIX INTRO (SAFE)
+========================= */
 .intro {
   position: fixed;
   inset: 0;
@@ -23,106 +28,152 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 999;
-  animation: hideIntro 2.5s ease forwards;
+  animation: introFade 2.8s ease forwards;
 }
 
-@keyframes hideIntro {
+@keyframes introFade {
   0% { opacity: 1; }
   80% { opacity: 1; }
   100% { opacity: 0; visibility: hidden; }
 }
 
 .logo {
-  font-size: 28px;
-  letter-spacing: 6px;
+  font-size: 32px;
+  letter-spacing: 10px;
+  font-weight: 300;
+  opacity: 0.9;
 }
 
-/* CLOUDS */
-.cloud {
+/* =========================
+   ANDROID STYLE DEPTH LAYERS
+========================= */
+.layer {
   position: fixed;
-  background: rgba(255,255,255,0.08);
-  border-radius: 50%;
-  filter: blur(18px);
+  inset: 0;
+  pointer-events: none;
 }
 
-.c1 { width: 200px; height: 60px; top: 20%; left: -200px; animation: move 90s linear infinite; }
-.c2 { width: 260px; height: 70px; top: 50%; left: -300px; animation: move 120s linear infinite; }
-.c3 { width: 180px; height: 50px; top: 75%; left: -250px; animation: move 100s linear infinite; }
+.glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(120,160,255,0.08);
+  filter: blur(80px);
+  border-radius: 50%;
+}
+
+.g1 { top: 10%; left: -100px; }
+.g2 { top: 60%; right: -120px; }
+
+/* CLOUDS (SOFT MOTION) */
+.cloud {
+  position: absolute;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+  filter: blur(20px);
+}
+
+.c1 { width: 220px; height: 70px; top: 20%; left: -200px; animation: move 100s linear infinite; }
+.c2 { width: 260px; height: 80px; top: 55%; left: -300px; animation: move 140s linear infinite; }
 
 @keyframes move {
   0% { transform: translateX(0); }
-  100% { transform: translateX(160vw); }
+  100% { transform: translateX(170vw); }
 }
 
-/* HERO */
+/* =========================
+   HERO (APPLE STYLE SPACING)
+========================= */
 .hero {
-  height: 90vh;
+  min-height: 92vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 2;
 }
 
+/* QUOTE */
 .quote {
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: clamp(18px, 2.2vw, 26px);
   opacity: 0.9;
-}
-
-/* BIRD */
-.bird {
-  width: 250px;
-  animation: float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.wing {
-  animation: flap 1.4s ease-in-out infinite;
-}
-
-@keyframes flap {
-  0%,100% { transform: rotate(-5deg); }
-  50% { transform: rotate(15deg); }
-}
-
-/* SECTIONS (IMPORTANT FIX) */
-.section {
-  padding: 70px 20px;
-  max-width: 900px;
-  margin: auto;
-  text-align: center;
-  opacity: 1;              /* 🔥 FIX: visible by default */
-  transform: none;         /* 🔥 FIX: no hidden state */
-}
-
-/* optional smooth effect */
-@media (min-width: 0px) {
-  .section {
-    animation: fadeUp 1s ease;
-  }
+  max-width: 720px;
+  margin-bottom: 25px;
+  animation: fadeUp 2s ease;
 }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  to { opacity: 0.9; transform: translateY(0); }
 }
 
-/* MUSIC BUTTON */
+/* =========================
+   CINEMATIC BIRD (CLEAN + PREMIUM)
+========================= */
+.bird {
+  width: 270px;
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.wing {
+  animation: flap 1.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes flap {
+  0%,100% { transform: rotate(-6deg); }
+  50% { transform: rotate(16deg); }
+}
+
+/* =========================
+   SECTIONS (APPLE CLEAN FLOW)
+========================= */
+.section {
+  padding: 90px 20px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Android-style card */
+.card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 22px;
+  backdrop-filter: blur(10px);
+}
+
+/* =========================
+   NETFLIX STYLE BUTTON
+========================= */
 .music-btn {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  padding: 12px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.1);
+  bottom: 22px;
+  left: 22px;
+  padding: 14px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
   color: white;
   cursor: pointer;
+  z-index: 10;
+  transition: 0.3s ease;
+}
+
+.music-btn:active {
+  transform: scale(0.95);
 }
 </style>
 </head>
@@ -134,24 +185,42 @@ body {
   <div class="logo">MY WINGS</div>
 </div>
 
-<!-- CLOUDS -->
-<div class="cloud c1"></div>
-<div class="cloud c2"></div>
-<div class="cloud c3"></div>
+<!-- BACKGROUND LAYERS -->
+<div class="layer">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="quote">“She took the leap and built her wings on the way down.”</div>
 
+  <div class="quote">
+    “She took the leap and built her wings on the way down.”
+  </div>
+
+  <!-- CINEMATIC BIRD -->
   <svg class="bird" viewBox="0 0 200 200">
-    <ellipse cx="100" cy="110" rx="26" ry="38" fill="white"/>
-    <circle cx="122" cy="88" r="10" fill="white"/>
-    <polygon points="132,88 148,92 132,96" fill="white"/>
-    <circle cx="124" cy="86" r="2" fill="black"/>
 
-    <ellipse class="wing" cx="80" cy="112" rx="32" ry="18" fill="white"/>
-    <ellipse class="wing" cx="120" cy="112" rx="32" ry="18" fill="white"/>
+    <!-- body -->
+    <ellipse cx="100" cy="110" rx="28" ry="40" fill="white"/>
+
+    <!-- head -->
+    <circle cx="125" cy="88" r="10" fill="white"/>
+
+    <!-- beak -->
+    <polygon points="135,88 150,92 135,96" fill="white"/>
+
+    <!-- eye -->
+    <circle cx="127" cy="86" r="2" fill="black"/>
+
+    <!-- wings -->
+    <ellipse class="wing" cx="80" cy="112" rx="34" ry="18" fill="white"/>
+    <ellipse class="wing" cx="120" cy="112" rx="34" ry="18" fill="white"/>
+
   </svg>
+
 </div>
 
 <!-- ABOUT -->
@@ -159,14 +228,24 @@ body {
   <h2>About Me</h2>
   <p>
     Divya Prakash Mundkar<br>
-    Computer Engineer | Creative Developer
+    Computer Engineer | Creative Developer<br>
+    Building cinematic hybrid experiences.
   </p>
 </div>
 
 <!-- PROJECT -->
 <div class="section">
   <h2>My Creation</h2>
-  <p>My Wings - Cinematic SVG Project</p>
+
+  <div class="card">
+    <h3>My Wings</h3>
+    <p>Cinematic hybrid UI project</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="section">
+  <p style="opacity:0.6;">Built by M. Divya ✨</p>
 </div>
 
 <!-- MUSIC -->
@@ -174,7 +253,9 @@ body {
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<button class="music-btn" onclick="toggleMusic()" id="btn">🎵</button>
+<button class="music-btn" onclick="toggleMusic()" id="btn">
+🎵 click me
+</button>
 
 <script>
 const music = document.getElementById("music");
@@ -183,10 +264,10 @@ const btn = document.getElementById("btn");
 function toggleMusic() {
   if (music.paused) {
     music.play();
-    btn.innerText = "⏸";
+    btn.innerText = "⏸ click me";
   } else {
     music.pause();
-    btn.innerText = "🎵";
+    btn.innerText = "🎵 click me";
   }
 }
 </script>
