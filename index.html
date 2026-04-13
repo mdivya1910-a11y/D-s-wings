@@ -39,6 +39,7 @@ body {
   animation: float 4.5s ease-in-out infinite;
 }
 
+/* FLOAT */
 @keyframes float {
   0%,100% { transform: translateY(0) rotate(-1deg); }
   50% { transform: translateY(-16px) rotate(1deg); }
@@ -122,56 +123,57 @@ h2 {
     “She took the leap and built her wings on the way down.”
   </div>
 
-  <!-- BIRD (UPDATED ONLY) -->
+  <!-- WHITE PIGEON -->
   <svg class="bird" viewBox="0 0 200 200">
 
     <!-- BODY -->
-    <path d="M100 58
-             C88 80, 86 120, 100 152
-             C114 120, 112 80, 100 58"
+    <path d="M100 60
+             C78 75, 72 110, 88 135
+             C95 150, 105 150, 112 135
+             C128 110, 122 75, 100 60"
           fill="white"/>
 
     <!-- HEAD -->
-    <circle cx="100" cy="52" r="7" fill="white"/>
-    <circle cx="102.2" cy="50.5" r="1.2" fill="black"/>
+    <circle cx="112" cy="62" r="7" fill="white"/>
+
+    <!-- BEAK -->
+    <path d="M118 64 L128 68 L118 70 Z" fill="white"/>
+
+    <!-- EYE -->
+    <circle cx="114" cy="61" r="1.6" fill="black"/>
+    <circle cx="115" cy="60" r="0.5" fill="white"/>
 
     <!-- LEFT WING -->
     <g class="wing-left">
-      <path d="M95 95
-               C40 60, 35 120, 95 115
-               C60 110, 58 88, 95 95"
+      <path d="M92 95
+               C40 70, 35 120, 88 120
+               C60 110, 60 90, 92 95"
             fill="white" opacity="0.95"/>
 
-      <path d="M92 100
-               C55 80, 50 120, 92 118
-               C70 112, 65 95, 92 100"
-            fill="white" opacity="0.6"/>
-
       <path d="M90 105
-               C65 95, 65 115, 90 112"
-            fill="white" opacity="0.4"/>
+               C55 90, 55 120, 88 118
+               C65 112, 65 100, 90 105"
+            fill="white" opacity="0.6"/>
     </g>
 
     <!-- RIGHT WING -->
     <g class="wing-right">
-      <path d="M105 95
-               C160 60, 165 120, 105 115
-               C140 110, 142 88, 105 95"
+      <path d="M108 95
+               C160 70, 165 120, 112 120
+               C140 110, 140 90, 108 95"
             fill="white" opacity="0.95"/>
 
-      <path d="M108 100
-               C145 80, 150 120, 108 118
-               C130 112, 135 95, 108 100"
-            fill="white" opacity="0.6"/>
-
       <path d="M110 105
-               C135 95, 135 115, 110 112"
-            fill="white" opacity="0.4"/>
+               C145 90, 145 120, 112 118
+               C135 112, 135 100, 110 105"
+            fill="white" opacity="0.6"/>
     </g>
 
-    <!-- GLOW -->
-    <ellipse cx="100" cy="115" rx="22" ry="46"
-             fill="white" opacity="0.05"/>
+    <!-- TAIL -->
+    <path d="M88 135
+             C70 140, 65 150, 85 150
+             C90 145, 92 140, 88 135"
+          fill="white" opacity="0.9"/>
 
   </svg>
 
@@ -193,7 +195,7 @@ h2 {
 
   <div class="card">
     <h3>My Wings</h3>
-    <p>Animated SVG cinematic bird project.</p>
+    <p>Animated SVG cinematic pigeon project.</p>
     <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank">
       View Project →
     </a>
