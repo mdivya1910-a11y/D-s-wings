@@ -8,9 +8,28 @@
 <style>
 body {
   margin: 0;
-  background: #05070f;
   color: white;
   font-family: system-ui, Arial;
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #05070f, #0b1630, #05060a);
+}
+
+/* CLOUDS */
+.cloud {
+  position: fixed;
+  background: rgba(255,255,255,0.12);
+  border-radius: 50%;
+  filter: blur(18px);
+  z-index: 0;
+}
+
+.c1 { width: 180px; height: 60px; top: 15%; left: -200px; animation: move 70s linear infinite; }
+.c2 { width: 240px; height: 70px; top: 45%; left: -300px; animation: move 95s linear infinite; }
+.c3 { width: 160px; height: 50px; top: 70%; left: -250px; animation: move 80s linear infinite; }
+
+@keyframes move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(150vw); }
 }
 
 /* HERO */
@@ -21,24 +40,60 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* CINEMATIC LIGHT SWEEP */
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+  transform: rotate(25deg);
+  animation: sweep 6s ease-in-out;
+}
+
+@keyframes sweep {
+  0% { transform: translateX(-200%) rotate(25deg); }
+  100% { transform: translateX(200%) rotate(25deg); }
 }
 
 /* QUOTE */
 .quote {
-  font-size: 20px;
+  font-size: clamp(18px, 2.5vw, 26px);
+  opacity: 0;
   margin-bottom: 30px;
+  max-width: 700px;
   padding: 0 20px;
-  opacity: 0.9;
+  animation: fadeIn 2.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 0.92; }
 }
 
 /* BIRD */
 .bird {
-  width: 220px;
+  width: 260px;
+  animation: float 4s ease-in-out infinite, reveal 2s ease forwards;
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.18));
 }
 
-/* wings animation */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* wings */
 .wing {
-  animation: flap 1.5s infinite ease-in-out;
+  animation: flap 1.5s ease-in-out infinite;
   transform-origin: center;
 }
 
@@ -49,22 +104,35 @@ body {
 
 /* SECTIONS */
 .section {
-  padding: 50px 20px;
-  max-width: 800px;
+  padding: 60px 20px;
+  max-width: 900px;
   margin: auto;
-  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 h2 {
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 25px;
 }
 
 .card {
-  background: #111;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
   padding: 20px;
   border-radius: 12px;
-  border: 1px solid #222;
-  margin-top: 15px;
+}
+
+.card a {
+  color: #66ccff;
+  text-decoration: none;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.6;
 }
 
 /* MUSIC BUTTON */
@@ -72,17 +140,30 @@ h2 {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  padding: 12px;
+  padding: 12px 14px;
   border-radius: 50%;
-  border: 1px solid #444;
+  border: 1px solid rgba(255,255,255,0.3);
   background: rgba(255,255,255,0.1);
   color: white;
   cursor: pointer;
+  z-index: 10;
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
+  50% { box-shadow: 0 0 18px 6px rgba(255,255,255,0.1); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
 }
 </style>
 </head>
 
 <body>
+
+<!-- CLOUDS -->
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
 
 <!-- HERO -->
 <div class="hero">
@@ -91,12 +172,22 @@ h2 {
     “She took the leap and built her wings on the way down.”
   </div>
 
-  <!-- SIMPLE CINEMATIC BIRD -->
+  <!-- CINEMATIC HAPPY PIGEON -->
   <svg class="bird" viewBox="0 0 200 200">
 
-    <circle cx="100" cy="110" r="30" fill="white"/>
+    <!-- body -->
+    <ellipse cx="100" cy="110" rx="25" ry="38" fill="white"/>
+
+    <!-- head -->
     <circle cx="120" cy="85" r="10" fill="white"/>
 
+    <!-- beak -->
+    <polygon points="130,85 145,90 130,95" fill="white"/>
+
+    <!-- eye -->
+    <circle cx="122" cy="83" r="2" fill="black"/>
+
+    <!-- wings -->
     <ellipse class="wing" cx="80" cy="110" rx="30" ry="18" fill="white"/>
     <ellipse class="wing" cx="120" cy="110" rx="30" ry="18" fill="white"/>
 
@@ -104,13 +195,13 @@ h2 {
 
 </div>
 
-<!-- ABOUT ME (RESTORED) -->
+<!-- ABOUT -->
 <div class="section">
   <h2>About Me</h2>
-  <p style="opacity:0.85;">
+  <p style="text-align:center; opacity:0.85;">
     Divya Prakash Mundkar<br>
     Computer Engineer rebuilding her craft.<br>
-    I create interactive experiences using HTML, CSS & SVG.
+    I create cinematic web experiences.
   </p>
 </div>
 
@@ -121,16 +212,15 @@ h2 {
   <div class="card">
     <h3>My Wings</h3>
     <p>Cinematic SVG animation project</p>
-
-    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank" style="color:#66ccff;">
+    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank">
       View Project →
     </a>
   </div>
 </div>
 
 <!-- FOOTER -->
-<div class="section">
-  <p style="opacity:0.6;">Built by M. Divya ✨</p>
+<div class="footer">
+  Built by M. Divya ✨
 </div>
 
 <!-- MUSIC -->
@@ -146,15 +236,32 @@ h2 {
 const music = document.getElementById("music");
 const btn = document.getElementById("btn");
 
+/* cross-page memory */
+const key = "bg_music_state";
+
+window.addEventListener("load", () => {
+  if (localStorage.getItem(key) === "playing") {
+    music.play();
+    btn.innerText = "⏸ click me";
+  }
+});
+
 function toggleMusic() {
   if (music.paused) {
     music.play();
+    localStorage.setItem(key, "playing");
     btn.innerText = "⏸ click me";
   } else {
     music.pause();
+    localStorage.setItem(key, "paused");
     btn.innerText = "🎵 click me";
   }
 }
+
+/* stop on tab change */
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) music.pause();
+});
 </script>
 
 </body>
