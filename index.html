@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
 }
 
-/* HERO */
+/* HERO STAGE */
 .hero {
   height: 100vh;
   display: flex;
@@ -23,26 +23,91 @@ body {
   flex-direction: column;
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
-/* QUOTE */
+/* DARK BASE */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center,
+    rgba(255,255,255,0.06),
+    rgba(0,0,0,0.96) 70%);
+  z-index: 0;
+}
+
+/* LIGHT REVEAL SWEEP */
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(120deg,
+    transparent,
+    rgba(255,255,255,0.10),
+    transparent);
+  transform: rotate(25deg);
+  animation: sweep 5s ease-in-out forwards;
+  z-index: 0;
+}
+
+@keyframes sweep {
+  0% { transform: translateX(-200%) rotate(25deg); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateX(200%) rotate(25deg); opacity: 0; }
+}
+
+/* QUOTE (fade in later) */
 .quote {
   font-size: clamp(18px, 2.5vw, 26px);
-  opacity: 0.9;
+  opacity: 0;
   margin-bottom: 30px;
   max-width: 700px;
   padding: 0 20px;
+  animation: fadeInText 2.5s ease forwards;
+  animation-delay: 2.2s;
+  z-index: 2;
 }
 
-/* BIRD */
+@keyframes fadeInText {
+  to { opacity: 0.9; }
+}
+
+/* BIRD REVEAL */
 .bird {
   width: 260px;
-  animation: float 4.5s ease-in-out infinite;
+  opacity: 0;
+  transform: scale(0.3) translateY(60px);
+  filter: drop-shadow(0 0 0 rgba(255,255,255,0));
+  animation: reveal 2.8s ease forwards;
+  animation-delay: 0.8s;
+  z-index: 2;
 }
 
+/* CINEMATIC REVEAL MOTION */
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(60px);
+    filter: drop-shadow(0 0 0 rgba(255,255,255,0));
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08) translateY(-10px);
+    filter: drop-shadow(0 0 25px rgba(255,255,255,0.25));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: drop-shadow(0 0 18px rgba(255,255,255,0.15));
+  }
+}
+
+/* SOFT BREATH AFTER INTRO */
 @keyframes float {
-  0%,100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-16px) rotate(1deg); }
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 /* WINGS */
@@ -78,7 +143,6 @@ h2 {
   margin-bottom: 30px;
 }
 
-/* CARD */
 .card {
   background: #111;
   border-radius: 12px;
@@ -91,7 +155,6 @@ h2 {
   text-decoration: none;
 }
 
-/* FOOTER */
 .footer {
   text-align: center;
   padding: 20px;
@@ -108,84 +171,74 @@ h2 {
   padding: 12px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   color: white;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  line-height: 1.1;
+
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.15); }
+  50% { box-shadow: 0 0 18px 6px rgba(255,255,255,0.08); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.15); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
 
   <div class="quote">
     “She took the leap and built her wings on the way down.”
   </div>
 
-  <!-- BIRD -->
+  <!-- HAPPY CINEMATIC BIRD -->
   <svg class="bird" viewBox="0 0 200 200">
 
-    <!-- BODY -->
-    <path d="M100 60
-             C80 70, 70 95, 78 115
-             C85 135, 105 145, 118 135
-             C130 125, 132 105, 120 90
-             C112 78, 110 65, 100 60"
+    <path d="M100 62
+             C82 72, 72 100, 78 120
+             C85 145, 105 150, 118 135
+             C132 120, 130 95, 118 78
+             C112 70, 108 64, 100 62"
           fill="white"/>
 
-    <!-- HEAD -->
-    <circle cx="120" cy="70" r="7" fill="white"/>
+    <circle cx="122" cy="68" r="8" fill="white"/>
 
-    <!-- BEAK -->
-    <path d="M127 71 L138 75 L127 78 Z" fill="white"/>
+    <path d="M128 69 C135 70, 135 74, 128 75 Z"
+          fill="white"/>
 
-    <!-- EYE -->
-    <circle cx="122" cy="69" r="1.6" fill="black"/>
+    <path d="M120 67 Q122 65 124 67"
+          stroke="black" stroke-width="1.4" fill="none" stroke-linecap="round"/>
 
-    <!-- LEFT WING -->
     <g class="wing-left">
-      <path d="M95 95
+      <path d="M95 92
                C45 65, 40 115, 90 118
-               C70 110, 65 90, 95 95"
+               C65 110, 60 88, 95 92"
             fill="white" opacity="0.95"/>
-
-      <path d="M92 105
-               C55 90, 55 120, 88 120
-               C70 114, 68 100, 92 105"
-            fill="white" opacity="0.6"/>
     </g>
 
-    <!-- RIGHT WING -->
     <g class="wing-right">
-      <path d="M105 95
+      <path d="M105 92
                C155 65, 160 115, 110 118
-               C130 110, 135 90, 105 95"
+               C135 110, 140 88, 105 92"
             fill="white" opacity="0.95"/>
-
-      <path d="M108 105
-               C145 90, 145 120, 112 120
-               C130 114, 132 100, 108 105"
-            fill="white" opacity="0.6"/>
     </g>
 
-    <!-- TAIL -->
-    <path d="M80 115
-             C60 120, 55 130, 75 135
-             C85 130, 85 120, 80 115"
+    <path d="M82 118
+             C60 120, 55 132, 78 138
+             C88 132, 88 122, 82 118"
           fill="white" opacity="0.9"/>
 
   </svg>
 
 </div>
 
-<!-- ABOUT -->
 <div class="section">
   <h2>About Me</h2>
   <p style="text-align:center; opacity:0.8;">
@@ -195,7 +248,6 @@ h2 {
   </p>
 </div>
 
-<!-- PROJECT -->
 <div class="section">
   <h2>Projects</h2>
 
@@ -209,18 +261,16 @@ h2 {
 
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
   Built by M. Divya ✨
 </div>
 
-<!-- MUSIC -->
 <audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <button class="music-btn" onclick="toggleMusic()" id="btn">
-  🎵 <span style="font-size:10px; opacity:0.8;">click me</span>
+  🎵 click me
 </button>
 
 <script>
@@ -232,10 +282,10 @@ music.volume = 0.3;
 function toggleMusic() {
   if (music.paused) {
     music.play();
-    btn.innerText = "⏸ click me";
+    btn.innerHTML = "⏸ click me";
   } else {
     music.pause();
-    btn.innerText = "🎵 click me";
+    btn.innerHTML = "🎵 click me";
   }
 }
 </script>
