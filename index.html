@@ -24,13 +24,10 @@ body {
   text-align: center;
 }
 
-/* QUOTE */
 .quote {
   font-size: clamp(18px, 2.5vw, 26px);
-  opacity: 0.9;
+  opacity: 0.85;
   margin-bottom: 30px;
-  max-width: 700px;
-  padding: 0 20px;
 }
 
 /* BIRD */
@@ -44,15 +41,10 @@ body {
   50% { transform: translateY(-16px) rotate(1deg); }
 }
 
-/* WINGS */
+/* LEFT WING */
 .wing-left {
   transform-origin: 100px 100px;
   animation: flapLeft 1.7s ease-in-out infinite;
-}
-
-.wing-right {
-  transform-origin: 100px 100px;
-  animation: flapRight 1.5s ease-in-out infinite;
 }
 
 @keyframes flapLeft {
@@ -60,9 +52,48 @@ body {
   50% { transform: rotate(20deg); }
 }
 
+/* RIGHT WING */
+.wing-right {
+  transform-origin: 100px 100px;
+  animation: flapRight 1.5s ease-in-out infinite;
+}
+
 @keyframes flapRight {
   0%,100% { transform: rotate(2deg); }
   50% { transform: rotate(-18deg); }
+}
+
+/* SECTIONS */
+.section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* CARD */
+.card {
+  background: #111;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #222;
+}
+
+.card a {
+  color: #66ccff;
+  text-decoration: none;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.6;
 }
 
 /* MUSIC BUTTON */
@@ -76,7 +107,6 @@ body {
   border-radius: 50%;
   cursor: pointer;
   font-size: 16px;
-  color: white;
 }
 </style>
 </head>
@@ -85,15 +115,13 @@ body {
 
 <!-- HERO -->
 <div class="hero">
-
-  <!-- QUOTE -->
   <div class="quote">
-    “The cage is open, but it has forgotten how to fly.”
+    "She had wings — she just forgot she could fly… until now."
   </div>
 
-  <!-- BIRD -->
   <svg class="bird" viewBox="0 0 200 200">
 
+    <!-- LEFT WING -->
     <g class="wing-left">
       <path d="M100 100 C35 15, 15 165, 100 125"
             fill="white" opacity="0.75"/>
@@ -101,6 +129,7 @@ body {
             fill="white" opacity="0.35"/>
     </g>
 
+    <!-- RIGHT WING -->
     <g class="wing-right">
       <path d="M100 100 C165 15, 185 165, 100 125"
             fill="white" opacity="0.75"/>
@@ -108,19 +137,54 @@ body {
             fill="white" opacity="0.35"/>
     </g>
 
-    <ellipse cx="100" cy="115" rx="18" ry="40" fill="white" opacity="0.08"/>
+    <!-- BODY GLOW -->
+    <ellipse cx="100" cy="115" rx="18" ry="40"
+             fill="white" opacity="0.08"/>
+
+    <!-- BODY -->
     <ellipse cx="100" cy="110" rx="10" ry="30" fill="white"/>
+
+    <!-- HEAD -->
     <circle cx="100" cy="80" r="11" fill="white"/>
+
+    <!-- EYE -->
     <circle cx="103" cy="78" r="2.2" fill="black"/>
     <circle cx="104" cy="77" r="0.7" fill="white"/>
 
   </svg>
+</div>
 
+<!-- ABOUT -->
+<div class="section">
+  <h2>About Me</h2>
+  <p style="text-align:center; opacity:0.8;">
+    Computer Engineer rebuilding her craft.  
+    I enjoy creating interactive and meaningful web experiences using HTML, CSS & SVG.
+  </p>
+</div>
+
+<!-- PROJECT -->
+<div class="section">
+  <h2>Projects</h2>
+
+  <div class="card">
+    <h3>My Wings</h3>
+    <p>Animated SVG experience built after 3.5 years.</p>
+    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank">
+      View Project →
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Built by M. Divya ✨
 </div>
 
 <!-- MUSIC -->
 <audio id="music" loop>
-  <source src="music.mp3" type="audio/mpeg">
+  <source src="music2.mp3" type="audio/mpeg">
 </audio>
 
 <button class="music-btn" onclick="toggleMusic()" id="btn">🎵</button>
@@ -131,17 +195,13 @@ const btn = document.getElementById("btn");
 
 music.volume = 0.3;
 
-async function toggleMusic() {
-  try {
-    if (music.paused) {
-      await music.play();
-      btn.innerText = "⏸";
-    } else {
-      music.pause();
-      btn.innerText = "🎵";
-    }
-  } catch (e) {
-    alert("Click again to enable audio (browser restriction)");
+function toggleMusic() {
+  if (music.paused) {
+    music.play();
+    btn.innerText = "⏸";
+  } else {
+    music.pause();
+    btn.innerText = "🎵";
   }
 }
 </script>
