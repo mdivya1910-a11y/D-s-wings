@@ -8,112 +8,63 @@
 <style>
 body {
   margin: 0;
+  background: #05070f;
   color: white;
   font-family: system-ui, Arial;
-  overflow-x: hidden;
-
-  background: linear-gradient(180deg, #05070f, #0b1630, #05060a);
-}
-
-/* CLOUDS */
-.cloud {
-  position: absolute;
-  background: rgba(255,255,255,0.25);
-  border-radius: 50%;
-  filter: blur(18px);
-  animation: moveClouds 40s linear infinite;
-}
-
-.cloud1 { width: 180px; height: 60px; top: 15%; left: -200px; }
-.cloud2 { width: 240px; height: 70px; top: 45%; left: -300px; animation-duration: 65s; }
-.cloud3 { width: 160px; height: 50px; top: 70%; left: -250px; animation-duration: 55s; }
-
-@keyframes moveClouds {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(140vw); }
 }
 
 /* HERO */
 .hero {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   text-align: center;
-  position: relative;
 }
 
 /* QUOTE */
 .quote {
-  font-size: clamp(18px, 2.5vw, 26px);
-  opacity: 0;
+  font-size: 20px;
   margin-bottom: 30px;
-  max-width: 700px;
-  animation: fadeIn 2s ease forwards;
+  padding: 0 20px;
+  opacity: 0.9;
 }
 
-@keyframes fadeIn {
-  to { opacity: 0.9; }
-}
-
-/* BIRD (CLEAN CINEMATIC PIGEON) */
+/* BIRD */
 .bird {
-  width: 260px;
-  filter: drop-shadow(0 0 18px rgba(255,255,255,0.25));
-  animation: float 4s ease-in-out infinite, reveal 2s ease forwards;
+  width: 220px;
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
-}
-
-@keyframes reveal {
-  from { opacity: 0; transform: scale(0.6); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* SIMPLE HAPPY PIGEON STYLE */
+/* wings animation */
 .wing {
+  animation: flap 1.5s infinite ease-in-out;
   transform-origin: center;
-  animation: flap 1.4s ease-in-out infinite;
 }
 
 @keyframes flap {
-  0%,100% { transform: rotate(-3deg); }
-  50% { transform: rotate(16deg); }
+  0%,100% { transform: rotate(-4deg); }
+  50% { transform: rotate(14deg); }
 }
 
 /* SECTIONS */
 .section {
-  padding: 60px 20px;
-  max-width: 900px;
+  padding: 50px 20px;
+  max-width: 800px;
   margin: auto;
+  text-align: center;
 }
 
 h2 {
-  text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: #111;
   padding: 20px;
   border-radius: 12px;
-}
-
-.card a {
-  color: #66ccff;
-  text-decoration: none;
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 20px;
-  opacity: 0.6;
+  border: 1px solid #222;
+  margin-top: 15px;
 }
 
 /* MUSIC BUTTON */
@@ -121,30 +72,17 @@ h2 {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  padding: 12px 14px;
+  padding: 12px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid #444;
   background: rgba(255,255,255,0.1);
   color: white;
   cursor: pointer;
-
-  animation: pulse 2.5s infinite;
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
-  50% { box-shadow: 0 0 18px 6px rgba(255,255,255,0.1); }
-  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
 }
 </style>
 </head>
 
 <body>
-
-<!-- CLOUDS -->
-<div class="cloud cloud1"></div>
-<div class="cloud cloud2"></div>
-<div class="cloud cloud3"></div>
 
 <!-- HERO -->
 <div class="hero">
@@ -153,54 +91,46 @@ h2 {
     “She took the leap and built her wings on the way down.”
   </div>
 
-  <!-- CINEMATIC HAPPY BIRD -->
+  <!-- SIMPLE CINEMATIC BIRD -->
   <svg class="bird" viewBox="0 0 200 200">
 
-    <!-- body -->
-    <ellipse cx="100" cy="110" rx="28" ry="38" fill="white"/>
+    <circle cx="100" cy="110" r="30" fill="white"/>
+    <circle cx="120" cy="85" r="10" fill="white"/>
 
-    <!-- head -->
-    <circle cx="120" cy="80" r="10" fill="white"/>
-
-    <!-- beak -->
-    <path d="M130 82 L145 88 L130 92 Z" fill="white"/>
-
-    <!-- eye -->
-    <circle cx="122" cy="78" r="2" fill="black"/>
-
-    <!-- wings -->
-    <ellipse class="wing" cx="85" cy="110" rx="30" ry="18" fill="white"/>
-    <ellipse class="wing" cx="115" cy="110" rx="30" ry="18" fill="white"/>
+    <ellipse class="wing" cx="80" cy="110" rx="30" ry="18" fill="white"/>
+    <ellipse class="wing" cx="120" cy="110" rx="30" ry="18" fill="white"/>
 
   </svg>
 
 </div>
 
-<!-- ABOUT -->
+<!-- ABOUT ME (RESTORED) -->
 <div class="section">
   <h2>About Me</h2>
-  <p style="text-align:center; opacity:0.8;">
+  <p style="opacity:0.85;">
     Divya Prakash Mundkar<br>
-    Computer Engineer rebuilding her craft.
+    Computer Engineer rebuilding her craft.<br>
+    I create interactive experiences using HTML, CSS & SVG.
   </p>
 </div>
 
-<!-- PROJECT -->
+<!-- PROJECTS -->
 <div class="section">
   <h2>My Creation</h2>
 
   <div class="card">
     <h3>My Wings</h3>
     <p>Cinematic SVG animation project</p>
-    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank">
+
+    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank" style="color:#66ccff;">
       View Project →
     </a>
   </div>
-
 </div>
 
-<div class="footer">
-  Built by M. Divya ✨
+<!-- FOOTER -->
+<div class="section">
+  <p style="opacity:0.6;">Built by M. Divya ✨</p>
 </div>
 
 <!-- MUSIC -->
@@ -216,15 +146,13 @@ h2 {
 const music = document.getElementById("music");
 const btn = document.getElementById("btn");
 
-music.volume = 0.3;
-
 function toggleMusic() {
   if (music.paused) {
     music.play();
-    btn.innerHTML = "⏸ click me";
+    btn.innerText = "⏸ click me";
   } else {
     music.pause();
-    btn.innerHTML = "🎵 click me";
+    btn.innerText = "🎵 click me";
   }
 }
 </script>
