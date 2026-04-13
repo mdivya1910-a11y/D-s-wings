@@ -8,10 +8,10 @@
 <style>
 body {
   margin: 0;
-  color: white;
   font-family: system-ui, Arial;
+  color: white;
+  background: linear-gradient(180deg, #050814, #0a1630, #05060a);
   overflow-x: hidden;
-  background: linear-gradient(180deg, #05070f, #0b1630, #05060a);
 }
 
 /* CLOUDS */
@@ -23,9 +23,9 @@ body {
   z-index: 0;
 }
 
-.c1 { width: 180px; height: 60px; top: 15%; left: -200px; animation: move 70s linear infinite; }
-.c2 { width: 240px; height: 70px; top: 45%; left: -300px; animation: move 95s linear infinite; }
-.c3 { width: 160px; height: 50px; top: 70%; left: -250px; animation: move 80s linear infinite; }
+.c1 { width: 180px; height: 60px; top: 15%; left: -200px; animation: move 80s linear infinite; }
+.c2 { width: 240px; height: 70px; top: 45%; left: -300px; animation: move 110s linear infinite; }
+.c3 { width: 160px; height: 50px; top: 70%; left: -250px; animation: move 95s linear infinite; }
 
 @keyframes move {
   0% { transform: translateX(0); }
@@ -41,10 +41,9 @@ body {
   align-items: center;
   text-align: center;
   position: relative;
-  overflow: hidden;
 }
 
-/* CINEMATIC LIGHT SWEEP */
+/* cinematic sweep */
 .hero::after {
   content: "";
   position: absolute;
@@ -52,7 +51,7 @@ body {
   height: 200%;
   background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
   transform: rotate(25deg);
-  animation: sweep 6s ease-in-out;
+  animation: sweep 7s ease-in-out;
 }
 
 @keyframes sweep {
@@ -62,44 +61,43 @@ body {
 
 /* QUOTE */
 .quote {
-  font-size: clamp(18px, 2.5vw, 26px);
+  font-size: 22px;
+  margin-bottom: 25px;
   opacity: 0;
-  margin-bottom: 30px;
+  animation: fadeIn 2.5s forwards;
   max-width: 700px;
   padding: 0 20px;
-  animation: fadeIn 2.5s ease forwards;
 }
 
 @keyframes fadeIn {
-  to { opacity: 0.92; }
+  to { opacity: 0.9; }
 }
 
 /* BIRD */
 .bird {
   width: 260px;
-  animation: float 4s ease-in-out infinite, reveal 2s ease forwards;
-  filter: drop-shadow(0 0 20px rgba(255,255,255,0.18));
+  animation: float 4s ease-in-out infinite, pop 1.8s ease forwards;
 }
 
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
+  50% { transform: translateY(-15px); }
 }
 
-@keyframes reveal {
+@keyframes pop {
   from { opacity: 0; transform: scale(0.6); }
   to { opacity: 1; transform: scale(1); }
 }
 
 /* wings */
 .wing {
-  animation: flap 1.5s ease-in-out infinite;
+  animation: flap 1.4s ease-in-out infinite;
   transform-origin: center;
 }
 
 @keyframes flap {
-  0%,100% { transform: rotate(-4deg); }
-  50% { transform: rotate(14deg); }
+  0%,100% { transform: rotate(-5deg); }
+  50% { transform: rotate(15deg); }
 }
 
 /* SECTIONS */
@@ -107,13 +105,13 @@ body {
   padding: 60px 20px;
   max-width: 900px;
   margin: auto;
+  text-align: center;
   position: relative;
   z-index: 2;
 }
 
 h2 {
-  text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -121,18 +119,6 @@ h2 {
   border: 1px solid rgba(255,255,255,0.1);
   padding: 20px;
   border-radius: 12px;
-}
-
-.card a {
-  color: #66ccff;
-  text-decoration: none;
-}
-
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 20px;
-  opacity: 0.6;
 }
 
 /* MUSIC BUTTON */
@@ -152,7 +138,7 @@ h2 {
 
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
-  50% { box-shadow: 0 0 18px 6px rgba(255,255,255,0.1); }
+  50% { box-shadow: 0 0 20px 6px rgba(255,255,255,0.12); }
   100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
 }
 </style>
@@ -172,24 +158,24 @@ h2 {
     “She took the leap and built her wings on the way down.”
   </div>
 
-  <!-- CINEMATIC HAPPY PIGEON -->
+  <!-- CLEAN HAPPY PIGEON -->
   <svg class="bird" viewBox="0 0 200 200">
 
     <!-- body -->
-    <ellipse cx="100" cy="110" rx="25" ry="38" fill="white"/>
+    <ellipse cx="100" cy="110" rx="26" ry="38" fill="white"/>
 
     <!-- head -->
-    <circle cx="120" cy="85" r="10" fill="white"/>
+    <circle cx="122" cy="88" r="10" fill="white"/>
 
     <!-- beak -->
-    <polygon points="130,85 145,90 130,95" fill="white"/>
+    <polygon points="132,88 148,92 132,96" fill="white"/>
 
     <!-- eye -->
-    <circle cx="122" cy="83" r="2" fill="black"/>
+    <circle cx="124" cy="86" r="2" fill="black"/>
 
     <!-- wings -->
-    <ellipse class="wing" cx="80" cy="110" rx="30" ry="18" fill="white"/>
-    <ellipse class="wing" cx="120" cy="110" rx="30" ry="18" fill="white"/>
+    <ellipse class="wing" cx="80" cy="112" rx="32" ry="18" fill="white"/>
+    <ellipse class="wing" cx="120" cy="112" rx="32" ry="18" fill="white"/>
 
   </svg>
 
@@ -198,10 +184,10 @@ h2 {
 <!-- ABOUT -->
 <div class="section">
   <h2>About Me</h2>
-  <p style="text-align:center; opacity:0.85;">
+  <p style="opacity:0.85;">
     Divya Prakash Mundkar<br>
-    Computer Engineer rebuilding her craft.<br>
-    I create cinematic web experiences.
+    Computer Engineer | Creative Developer<br>
+    I build cinematic web experiences using HTML, CSS & SVG.
   </p>
 </div>
 
@@ -211,16 +197,16 @@ h2 {
 
   <div class="card">
     <h3>My Wings</h3>
-    <p>Cinematic SVG animation project</p>
-    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank">
+    <p>Cinematic animated SVG project</p>
+    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank" style="color:#66ccff;">
       View Project →
     </a>
   </div>
 </div>
 
 <!-- FOOTER -->
-<div class="footer">
-  Built by M. Divya ✨
+<div class="section">
+  <p style="opacity:0.6;">Built by M. Divya ✨</p>
 </div>
 
 <!-- MUSIC -->
@@ -236,8 +222,7 @@ h2 {
 const music = document.getElementById("music");
 const btn = document.getElementById("btn");
 
-/* cross-page memory */
-const key = "bg_music_state";
+const key = "global_music";
 
 window.addEventListener("load", () => {
   if (localStorage.getItem(key) === "playing") {
@@ -258,7 +243,6 @@ function toggleMusic() {
   }
 }
 
-/* stop on tab change */
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) music.pause();
 });
