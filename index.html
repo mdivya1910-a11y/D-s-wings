@@ -14,43 +14,21 @@ body {
   overflow-x: hidden;
 }
 
-/* =========================
-   MOVING CLOUDS (FINAL FIX)
-   ========================= */
-
+/* 🌥️ CLOUDS (FINAL FIX) */
 .cloud {
   position: fixed;
-  background: radial-gradient(circle, rgba(255,255,255,0.45), rgba(255,255,255,0.08));
+  background: radial-gradient(circle, rgba(255,255,255,0.65), rgba(255,255,255,0.08));
   border-radius: 50%;
-  filter: blur(18px);
+  filter: blur(16px);
   z-index: 1;
   opacity: 1;
   pointer-events: none;
+  mix-blend-mode: screen;
 }
 
-.c1 {
-  width: 240px;
-  height: 80px;
-  top: 12%;
-  left: -260px;
-  animation: drift1 60s linear infinite;
-}
-
-.c2 {
-  width: 320px;
-  height: 100px;
-  top: 45%;
-  left: -420px;
-  animation: drift2 85s linear infinite;
-}
-
-.c3 {
-  width: 220px;
-  height: 70px;
-  top: 75%;
-  left: -300px;
-  animation: drift3 75s linear infinite;
-}
+.c1 { width: 240px; height: 80px; top: 12%; left: -260px; animation: drift1 60s linear infinite; }
+.c2 { width: 320px; height: 100px; top: 45%; left: -420px; animation: drift2 85s linear infinite; }
+.c3 { width: 220px; height: 70px; top: 75%; left: -300px; animation: drift3 95s linear infinite; }
 
 @keyframes drift1 {
   0% { transform: translateX(0); }
@@ -80,19 +58,17 @@ body {
   z-index: 2;
 }
 
-/* QUOTE */
 .quote {
   font-size: 22px;
   margin-bottom: 15px;
   opacity: 0.9;
   max-width: 700px;
-  padding: 0 20px;
 }
 
 /* BIRD */
 .bird {
   width: 260px;
-  animation: float 4s ease-in-out infinite, pop 1.8s ease forwards;
+  animation: float 4s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -100,12 +76,6 @@ body {
   50% { transform: translateY(-12px); }
 }
 
-@keyframes pop {
-  from { opacity: 0; transform: scale(0.6); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* WINGS */
 .wing {
   animation: flap 1.4s ease-in-out infinite;
   transform-origin: center;
@@ -122,21 +92,15 @@ body {
   max-width: 900px;
   margin: auto;
   text-align: center;
-  position: relative;
   z-index: 2;
+  position: relative;
 }
 
-h2 {
-  margin-bottom: 16px;
-}
-
-/* CARD */
 .card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
   padding: 20px;
   border-radius: 12px;
-  margin-bottom: 18px;
 }
 
 /* MUSIC BUTTON */
@@ -171,7 +135,6 @@ h2 {
 
 <!-- HERO -->
 <div class="hero">
-
   <div class="quote">
     “She took the leap and built her wings on the way down.”
   </div>
@@ -184,7 +147,6 @@ h2 {
     <ellipse class="wing" cx="80" cy="112" rx="32" ry="18" fill="white"/>
     <ellipse class="wing" cx="120" cy="112" rx="32" ry="18" fill="white"/>
   </svg>
-
 </div>
 
 <!-- ABOUT -->
@@ -192,9 +154,9 @@ h2 {
   <h2>About Me</h2>
   <p style="opacity:0.85;">
     Divya Prakash Mundkar<br>
-    Computer Engineer | Creative Developer<br>
-    Crafting motion-driven web interfaces using HTML, CSS, and SVG.<br>
-    Hands-on experience with Git and GitHub for version control and deployment.
+    Creative Developer<br>
+    Crafting motion-driven web interfaces using HTML, CSS & SVG.<br>
+    Hands-on GitHub deployment experience.
   </p>
 </div>
 
@@ -205,16 +167,10 @@ h2 {
   <div class="card">
     <h3>My Wings</h3>
     <p>Cinematic SVG animation project</p>
-    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank" style="color:#66ccff;">
+    <a href="https://mdivya1910-a11y.github.io/My-wings/" style="color:#66ccff;">
       View Project →
     </a>
   </div>
-
-</div>
-
-<!-- FOOTER -->
-<div class="section">
-  <p style="opacity:0.6;">Built by M. Divya ✨</p>
 </div>
 
 <!-- MUSIC -->
@@ -239,6 +195,13 @@ function toggleMusic() {
     btn.innerText = "🎵 click me";
   }
 }
+
+/* stop music when user leaves page (BEST POSSIBLE FIX) */
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    if (!music.paused) music.pause();
+  }
+});
 </script>
 
 </body>
