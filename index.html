@@ -32,9 +32,9 @@ body {
   100% { transform: translateX(160vw); }
 }
 
-/* HERO (REDUCED GAP FIX) */
+/* HERO — FIXED GAP ISSUE */
 .hero {
-  min-height: 85vh;   /* 🔥 FIX: removed 100vh gap issue */
+  min-height: 78vh;   /* 🔥 FIX: was 100vh causing huge empty space */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,15 +63,10 @@ body {
 /* QUOTE */
 .quote {
   font-size: 22px;
-  margin-bottom: 18px; /* 🔥 reduced gap */
-  opacity: 0;
-  animation: fadeIn 2.5s forwards;
+  margin-bottom: 15px; /* tighter */
+  opacity: 0.9;
   max-width: 700px;
   padding: 0 20px;
-}
-
-@keyframes fadeIn {
-  to { opacity: 0.9; }
 }
 
 /* BIRD */
@@ -82,7 +77,7 @@ body {
 
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-12px); }
 }
 
 @keyframes pop {
@@ -90,7 +85,7 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* wings */
+/* WINGS */
 .wing {
   animation: flap 1.4s ease-in-out infinite;
   transform-origin: center;
@@ -101,14 +96,18 @@ body {
   50% { transform: rotate(15deg); }
 }
 
-/* SECTIONS (KEEP YOUR BEST STYLE) */
+/* SECTIONS — FIXED SPACING */
 .section {
-  padding: 50px 20px;   /* 🔥 reduced spacing */
+  padding: 45px 20px;  /* tighter = removes “floating empty space” */
   max-width: 900px;
   margin: auto;
   text-align: center;
   position: relative;
   z-index: 2;
+}
+
+h2 {
+  margin-bottom: 16px;
 }
 
 /* CARD */
@@ -117,6 +116,7 @@ body {
   border: 1px solid rgba(255,255,255,0.1);
   padding: 20px;
   border-radius: 12px;
+  margin-bottom: 18px;
 }
 
 /* MUSIC BUTTON */
@@ -156,54 +156,44 @@ body {
     “She took the leap and built her wings on the way down.”
   </div>
 
-  <!-- BIRD -->
   <svg class="bird" viewBox="0 0 200 200">
-
     <ellipse cx="100" cy="110" rx="26" ry="38" fill="white"/>
-
     <circle cx="122" cy="88" r="10" fill="white"/>
-
     <polygon points="132,88 148,92 132,96" fill="white"/>
-
     <circle cx="124" cy="86" r="2" fill="black"/>
-
     <ellipse class="wing" cx="80" cy="112" rx="32" ry="18" fill="white"/>
     <ellipse class="wing" cx="120" cy="112" rx="32" ry="18" fill="white"/>
-
   </svg>
 
 </div>
 
-<!-- ABOUT (YOUR BEST VERSION RESTORED) -->
+<!-- ABOUT (RESTORED ORIGINAL FEEL) -->
 <div class="section">
   <h2>About Me</h2>
   <p style="opacity:0.85;">
     Divya Prakash Mundkar<br>
     Computer Engineer | Creative Developer<br>
-    I build cinematic web experiences using HTML, CSS & SVG.
+   Crafting motion-driven web interfaces using HTML, CSS, and SVG.
+Hands-on experience with Git and GitHub for version control and deployment.
   </p>
 </div>
 
-<!-- PROJECTS (FIXED - BOTH PRESENT) -->
+<!-- PROJECTS (FIXED BOTH VISIBLE) -->
 <div class="section">
   <h2>My Creation</h2>
 
   <div class="card">
     <h3>My Wings</h3>
     <p>Cinematic animated SVG project</p>
-    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank" style="color:#66ccff;">
+    <a href="https://mdivya1910-a11y.github.io/My-wings/" style="color:#66ccff;">
       View Project →
     </a>
   </div>
 
-  <br>
-
   <div class="card">
     <h3>Second Project</h3>
-    <p>Another creation from the same universe</p>
-    <a href="#" style="color:#66ccff;">
-      View Project →
-    </a>
+    <p>Another creative build</p>
+    <a href="#" style="color:#66ccff;">View Project →</a>
   </div>
 
 </div>
