@@ -14,6 +14,11 @@ body {
   overflow-x: hidden;
 }
 
+/* RESET DEFAULT SPACING (IMPORTANT FIX) */
+h1, h2, h3, p {
+  margin: 0;
+}
+
 /* CLOUDS */
 .cloud {
   position: fixed;
@@ -53,8 +58,8 @@ body {
   align-items: center;
   text-align: center;
   position: relative;
-  padding: 50px 20px 20px;
-  margin-bottom: 0;   /* IMPORTANT: reduced gap */
+  padding: 40px 20px 10px;
+  margin-bottom: 0;
   z-index: 2;
 }
 
@@ -89,14 +94,19 @@ body {
   50% { transform: rotate(15deg); }
 }
 
-/* SECTIONS */
+/* FIXED SECTIONS (KEY IMPROVEMENT) */
 .section {
-  padding: 60px 20px;   /* IMPORTANT: reduced from 80px */
+  padding: 45px 20px;
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
   position: relative;
   z-index: 2;
+}
+
+/* REDUCE HERO → ABOUT GAP (IMPORTANT) */
+.hero + .section {
+  margin-top: -10px;
 }
 
 /* CARD */
@@ -105,6 +115,16 @@ body {
   border: 1px solid rgba(255,255,255,0.1);
   padding: 20px;
   border-radius: 12px;
+}
+
+/* TEXT CONTROL */
+h2 {
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 6px 0;
+  line-height: 1.6;
 }
 
 /* MUSIC BUTTON */
@@ -160,7 +180,7 @@ body {
     Divya Prakash Mundkar<br>
     Creative Developer<br>
     Crafting motion-driven web interfaces using HTML, CSS & SVG.<br>
-    Built and deployed projects using Git and GitHub.
+    Built and deployed projects using Git & GitHub.
   </p>
 </div>
 
