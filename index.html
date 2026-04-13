@@ -6,139 +6,104 @@
 <title>My Wings | Divya</title>
 
 <style>
-/* =========================
-   BASE SYSTEM (APPLE CLEAN)
-========================= */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, system-ui, Arial;
-  background: radial-gradient(circle at top, #0b1020, #05060c 60%, #000);
+  font-family: system-ui, Arial;
   color: white;
+  background: linear-gradient(180deg, #050814, #0a1630, #05060a);
   overflow-x: hidden;
 }
 
-/* =========================
-   NETFLIX INTRO (SAFE)
-========================= */
-.intro {
-  position: fixed;
-  inset: 0;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  animation: introFade 2.8s ease forwards;
-}
-
-@keyframes introFade {
-  0% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { opacity: 0; visibility: hidden; }
-}
-
-.logo {
-  font-size: 32px;
-  letter-spacing: 10px;
-  font-weight: 300;
-  opacity: 0.9;
-}
-
-/* =========================
-   ANDROID STYLE DEPTH LAYERS
-========================= */
-.layer {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-}
-
-.glow {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: rgba(120,160,255,0.08);
-  filter: blur(80px);
-  border-radius: 50%;
-}
-
-.g1 { top: 10%; left: -100px; }
-.g2 { top: 60%; right: -120px; }
-
-/* CLOUDS (SOFT MOTION) */
+/* CLOUDS */
 .cloud {
-  position: absolute;
-  background: rgba(255,255,255,0.06);
+  position: fixed;
+  background: rgba(255,255,255,0.10);
   border-radius: 50%;
-  filter: blur(20px);
+  filter: blur(18px);
+  z-index: 0;
 }
 
-.c1 { width: 220px; height: 70px; top: 20%; left: -200px; animation: move 100s linear infinite; }
-.c2 { width: 260px; height: 80px; top: 55%; left: -300px; animation: move 140s linear infinite; }
+.c1 { width: 180px; height: 60px; top: 15%; left: -200px; animation: move 90s linear infinite; }
+.c2 { width: 240px; height: 70px; top: 45%; left: -300px; animation: move 120s linear infinite; }
+.c3 { width: 160px; height: 50px; top: 70%; left: -250px; animation: move 100s linear infinite; }
 
 @keyframes move {
   0% { transform: translateX(0); }
-  100% { transform: translateX(170vw); }
+  100% { transform: translateX(160vw); }
 }
 
-/* =========================
-   HERO (APPLE STYLE SPACING)
-========================= */
+/* HERO (REDUCED GAP FIX) */
 .hero {
-  min-height: 92vh;
+  min-height: 85vh;   /* 🔥 FIX: removed 100vh gap issue */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 60px 20px;
   position: relative;
-  z-index: 2;
+  padding: 40px 20px;
+}
+
+/* cinematic sweep */
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+  transform: rotate(25deg);
+  animation: sweep 7s ease-in-out;
+}
+
+@keyframes sweep {
+  0% { transform: translateX(-200%) rotate(25deg); }
+  100% { transform: translateX(200%) rotate(25deg); }
 }
 
 /* QUOTE */
 .quote {
-  font-size: clamp(18px, 2.2vw, 26px);
-  opacity: 0.9;
-  max-width: 720px;
-  margin-bottom: 25px;
-  animation: fadeUp 2s ease;
+  font-size: 22px;
+  margin-bottom: 18px; /* 🔥 reduced gap */
+  opacity: 0;
+  animation: fadeIn 2.5s forwards;
+  max-width: 700px;
+  padding: 0 20px;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 0.9; transform: translateY(0); }
+@keyframes fadeIn {
+  to { opacity: 0.9; }
 }
 
-/* =========================
-   CINEMATIC BIRD (CLEAN + PREMIUM)
-========================= */
+/* BIRD */
 .bird {
-  width: 270px;
-  filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
-  animation: float 5s ease-in-out infinite;
+  width: 260px;
+  animation: float 4s ease-in-out infinite, pop 1.8s ease forwards;
 }
 
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-10px); }
 }
 
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* wings */
 .wing {
-  animation: flap 1.5s ease-in-out infinite;
+  animation: flap 1.4s ease-in-out infinite;
   transform-origin: center;
 }
 
 @keyframes flap {
-  0%,100% { transform: rotate(-6deg); }
-  50% { transform: rotate(16deg); }
+  0%,100% { transform: rotate(-5deg); }
+  50% { transform: rotate(15deg); }
 }
 
-/* =========================
-   SECTIONS (APPLE CLEAN FLOW)
-========================= */
+/* SECTIONS (KEEP YOUR BEST STYLE) */
 .section {
-  padding: 90px 20px;
+  padding: 50px 20px;   /* 🔥 reduced spacing */
   max-width: 900px;
   margin: auto;
   text-align: center;
@@ -146,52 +111,43 @@ body {
   z-index: 2;
 }
 
-/* Android-style card */
+/* CARD */
 .card {
-  background: rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 18px;
-  padding: 22px;
-  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 12px;
 }
 
-/* =========================
-   NETFLIX STYLE BUTTON
-========================= */
+/* MUSIC BUTTON */
 .music-btn {
   position: fixed;
-  bottom: 22px;
-  left: 22px;
-  padding: 14px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.08);
+  bottom: 20px;
+  left: 20px;
+  padding: 12px 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
   color: white;
   cursor: pointer;
   z-index: 10;
-  transition: 0.3s ease;
+  animation: pulse 2.5s infinite;
 }
 
-.music-btn:active {
-  transform: scale(0.95);
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
+  50% { box-shadow: 0 0 20px 6px rgba(255,255,255,0.12); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div class="intro">
-  <div class="logo">MY WINGS</div>
-</div>
-
-<!-- BACKGROUND LAYERS -->
-<div class="layer">
-  <div class="glow g1"></div>
-  <div class="glow g2"></div>
-  <div class="cloud c1"></div>
-  <div class="cloud c2"></div>
-</div>
+<!-- CLOUDS -->
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
 
 <!-- HERO -->
 <div class="hero">
@@ -200,47 +156,56 @@ body {
     “She took the leap and built her wings on the way down.”
   </div>
 
-  <!-- CINEMATIC BIRD -->
+  <!-- BIRD -->
   <svg class="bird" viewBox="0 0 200 200">
 
-    <!-- body -->
-    <ellipse cx="100" cy="110" rx="28" ry="40" fill="white"/>
+    <ellipse cx="100" cy="110" rx="26" ry="38" fill="white"/>
 
-    <!-- head -->
-    <circle cx="125" cy="88" r="10" fill="white"/>
+    <circle cx="122" cy="88" r="10" fill="white"/>
 
-    <!-- beak -->
-    <polygon points="135,88 150,92 135,96" fill="white"/>
+    <polygon points="132,88 148,92 132,96" fill="white"/>
 
-    <!-- eye -->
-    <circle cx="127" cy="86" r="2" fill="black"/>
+    <circle cx="124" cy="86" r="2" fill="black"/>
 
-    <!-- wings -->
-    <ellipse class="wing" cx="80" cy="112" rx="34" ry="18" fill="white"/>
-    <ellipse class="wing" cx="120" cy="112" rx="34" ry="18" fill="white"/>
+    <ellipse class="wing" cx="80" cy="112" rx="32" ry="18" fill="white"/>
+    <ellipse class="wing" cx="120" cy="112" rx="32" ry="18" fill="white"/>
 
   </svg>
 
 </div>
 
-<!-- ABOUT -->
+<!-- ABOUT (YOUR BEST VERSION RESTORED) -->
 <div class="section">
   <h2>About Me</h2>
-  <p>
+  <p style="opacity:0.85;">
     Divya Prakash Mundkar<br>
     Computer Engineer | Creative Developer<br>
-    Building cinematic hybrid experiences.
+    I build cinematic web experiences using HTML, CSS & SVG.
   </p>
 </div>
 
-<!-- PROJECT -->
+<!-- PROJECTS (FIXED - BOTH PRESENT) -->
 <div class="section">
   <h2>My Creation</h2>
 
   <div class="card">
     <h3>My Wings</h3>
-    <p>Cinematic hybrid UI project</p>
+    <p>Cinematic animated SVG project</p>
+    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank" style="color:#66ccff;">
+      View Project →
+    </a>
   </div>
+
+  <br>
+
+  <div class="card">
+    <h3>Second Project</h3>
+    <p>Another creation from the same universe</p>
+    <a href="#" style="color:#66ccff;">
+      View Project →
+    </a>
+  </div>
+
 </div>
 
 <!-- FOOTER -->
