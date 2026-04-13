@@ -14,10 +14,10 @@ body {
   overflow-x: hidden;
 }
 
-/* 🌥️ CLOUDS (FINAL FIX) */
+/* CLOUDS */
 .cloud {
   position: fixed;
-  background: radial-gradient(circle, rgba(255,255,255,0.65), rgba(255,255,255,0.08));
+  background: radial-gradient(circle, rgba(255,255,255,0.6), rgba(255,255,255,0.05));
   border-radius: 50%;
   filter: blur(16px);
   z-index: 1;
@@ -58,11 +58,13 @@ body {
   z-index: 2;
 }
 
+/* QUOTE */
 .quote {
   font-size: 22px;
   margin-bottom: 15px;
   opacity: 0.9;
   max-width: 700px;
+  padding: 0 20px;
 }
 
 /* BIRD */
@@ -76,6 +78,7 @@ body {
   50% { transform: translateY(-12px); }
 }
 
+/* WINGS */
 .wing {
   animation: flap 1.4s ease-in-out infinite;
   transform-origin: center;
@@ -92,8 +95,8 @@ body {
   max-width: 900px;
   margin: auto;
   text-align: center;
-  z-index: 2;
   position: relative;
+  z-index: 2;
 }
 
 .card {
@@ -156,7 +159,7 @@ body {
     Divya Prakash Mundkar<br>
     Creative Developer<br>
     Crafting motion-driven web interfaces using HTML, CSS & SVG.<br>
-       Hands-on experience with Git and GitHub for version control and deployment.
+    Hands-on GitHub deployment experience.
   </p>
 </div>
 
@@ -171,6 +174,13 @@ body {
       View Project →
     </a>
   </div>
+</div>
+
+<!-- FOOTER (ONLY FIXED PART) -->
+<div class="section" style="padding-bottom: 80px;">
+  <p style="opacity:0.6; text-align:center; position:relative; z-index:5;">
+    Built by M. Divya ✨
+  </p>
 </div>
 
 <!-- MUSIC -->
@@ -195,13 +205,6 @@ function toggleMusic() {
     btn.innerText = "🎵 click me";
   }
 }
-
-/* stop music when user leaves page (BEST POSSIBLE FIX) */
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    if (!music.paused) music.pause();
-  }
-});
 </script>
 
 </body>
