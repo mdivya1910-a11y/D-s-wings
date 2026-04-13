@@ -47,15 +47,29 @@ body {
 
 /* HERO */
 .hero {
-  min-height: 75vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   position: relative;
-  padding: 60px 20px 20px;
+  padding: 60px 20px;
+  margin-bottom: 40px;
   z-index: 2;
+}
+
+/* HERO FADE (IMPORTANT UX FIX) */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.25));
+  pointer-events: none;
 }
 
 /* QUOTE */
@@ -89,22 +103,9 @@ body {
   50% { transform: rotate(15deg); }
 }
 
-/* SCROLL HINT */
-.scroll-hint {
-  margin-top: 20px;
-  font-size: 14px;
-  opacity: 0.7;
-  animation: bounce 1.5s infinite;
-}
-
-@keyframes bounce {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-}
-
 /* SECTIONS */
 .section {
-  padding: 70px 20px;
+  padding: 80px 20px;
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
@@ -163,8 +164,6 @@ body {
     <ellipse class="wing" cx="80" cy="112" rx="32" ry="18" fill="white"/>
     <ellipse class="wing" cx="120" cy="112" rx="32" ry="18" fill="white"/>
   </svg>
-
-  <div class="scroll-hint">↓ Scroll to explore</div>
 </div>
 
 <!-- ABOUT -->
@@ -175,6 +174,7 @@ body {
     Creative Developer<br>
     Crafting motion-driven web interfaces using HTML, CSS & SVG.<br>
     Built and deployed projects using Git and GitHub.
+  </p>
 </div>
 
 <!-- MY CREATION -->
