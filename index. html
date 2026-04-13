@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Wings | Divya</title>
+
+<style>
+body {
+  margin: 0;
+  background: #000;
+  color: white;
+  font-family: system-ui, Arial;
+  overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.quote {
+  font-size: clamp(18px, 2.5vw, 26px);
+  opacity: 0.85;
+  margin-bottom: 30px;
+}
+
+/* BIRD */
+.bird {
+  width: 220px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.wing {
+  transform-origin: center;
+  animation: flap 1.6s ease-in-out infinite;
+}
+
+@keyframes flap {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(18deg); }
+}
+
+/* SECTIONS */
+.section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* CARD */
+.card {
+  background: #111;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #222;
+}
+
+.card a {
+  color: #66ccff;
+  text-decoration: none;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.6;
+}
+
+/* MUSIC BUTTON */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="quote">
+    "She had wings — she just forgot she could fly… until now."
+  </div>
+
+  <svg class="bird" viewBox="0 0 200 200">
+    <g class="wing">
+      <path d="M100 100 C40 20, 20 160, 100 120"
+            fill="white" opacity="0.7"/>
+      <path d="M100 100 C60 40, 40 140, 100 120"
+            fill="white" opacity="0.4"/>
+    </g>
+
+    <g class="wing">
+      <path d="M100 100 C160 20, 180 160, 100 120"
+            fill="white" opacity="0.7"/>
+      <path d="M100 100 C140 40, 160 140, 100 120"
+            fill="white" opacity="0.4"/>
+    </g>
+
+    <ellipse cx="100" cy="110" rx="10" ry="30" fill="white"/>
+    <circle cx="100" cy="80" r="10" fill="white"/>
+    <circle cx="103" cy="78" r="2" fill="black"/>
+  </svg>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+  <h2>About Me</h2>
+  <p style="text-align:center; opacity:0.8;">
+    Computer Engineer rebuilding her craft.  
+    I enjoy creating interactive and meaningful web experiences.
+  </p>
+</div>
+
+<!-- PROJECT -->
+<div class="section">
+  <h2>Projects</h2>
+
+  <div class="card">
+    <h3>My Wings</h3>
+    <p>Animated SVG project using HTML, CSS & interaction.</p>
+    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank">
+      View Project →
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Built by M. Divya ✨
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()" id="btn">🎵</button>
+
+<script>
+const music = document.getElementById("music");
+const btn = document.getElementById("btn");
+
+music.volume = 0.3;
+
+function toggleMusic() {
+  if (music.paused) {
+    music.play();
+    btn.innerText = "⏸";
+  } else {
+    music.pause();
+    btn.innerText = "🎵";
+  }
+}
+</script>
+
+</body>
+</html>
