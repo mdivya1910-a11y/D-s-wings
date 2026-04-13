@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Wings | Cinematic</title>
+
+<style>
+body {
+  margin: 0;
+  overflow-x: hidden;
+  height: 100vh;
+  font-family: system-ui, Arial;
+  color: white;
+  background: linear-gradient(-45deg, #05070f, #0b1a2a, #1b2b40, #05070f);
+  background-size: 400% 400%;
+  animation: skyShift 18s ease-in-out infinite;
+}
+
+@keyframes skyShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* CLOUDS */
+.clouds {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: url("https://i.ibb.co/2nK8z7Q/clouds.png");
+  background-repeat: repeat-x;
+  opacity: 0.25;
+  animation: cloudMove 60s linear infinite;
+}
+
+.clouds.front { opacity: 0.35; animation-duration: 40s; }
+.clouds.back { opacity: 0.15; animation-duration: 90s; }
+
+@keyframes cloudMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  text-align: center;
+}
+
+/* QUOTE */
+.quote {
+  font-size: clamp(18px, 2.5vw, 28px);
+  opacity: 0;
+  animation: fadeIn 2.5s ease forwards;
+  animation-delay: 1s;
+  max-width: 700px;
+  padding: 0 20px;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* BIRD */
+.bird {
+  width: 220px;
+  position: absolute;
+  left: -20%;
+  top: 55%;
+  animation: flyPath 14s linear infinite;
+  filter: drop-shadow(0 0 12px rgba(255,255,255,0.25));
+}
+
+@keyframes flyPath {
+  0% { transform: translate(-20vw, 10vh) scale(0.9); }
+  25% { transform: translate(20vw, -5vh) scale(1); }
+  50% { transform: translate(50vw, -15vh) scale(1.05); }
+  75% { transform: translate(80vw, -5vh) scale(1); }
+  100% { transform: translate(120vw, 10vh) scale(0.9); }
+}
+
+/* WINGS */
+.wing-left {
+  transform-origin: 100px 100px;
+  animation: flapL 1.4s ease-in-out infinite;
+}
+
+.wing-right {
+  transform-origin: 100px 100px;
+  animation: flapR 1.2s ease-in-out infinite;
+}
+
+@keyframes flapL {
+  0%,100% { transform: rotate(-8deg); }
+  50% { transform: rotate(25deg); }
+}
+
+@keyframes flapR {
+  0%,100% { transform: rotate(8deg); }
+  50% { transform: rotate(-22deg); }
+}
+
+/* MUSIC BUTTON */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 12px 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(0,0,0,0.4);
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="clouds back"></div>
+<div class="clouds front"></div>
+
+<div class="hero">
+
+  <div class="quote">
+    “The cage is open, but it has forgotten how to fly.”
+  </div>
+
+  <!-- BIRD -->
+  <svg class="bird" viewBox="0 0 200 200">
+
+    <g class="wing-left">
+      <path d="M100 110 C35 40, 20 150, 100 135" fill="white" opacity="0.8"/>
+      <path d="M100 110 C55 65, 40 140, 100 135" fill="white" opacity="0.3"/>
+    </g>
+
+    <g class="wing-right">
+      <path d="M100 110 C165 40, 180 150, 100 135" fill="white" opacity="0.8"/>
+      <path d="M100 110 C145 65, 160 140, 100 135" fill="white" opacity="0.3"/>
+    </g>
+
+    <ellipse cx="100" cy="120" rx="10" ry="32" fill="white"/>
+    <circle cx="100" cy="85" r="10" fill="white"/>
+    <circle cx="103" cy="83" r="2" fill="black"/>
+
+  </svg>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<script>
+const music = document.getElementById("music");
+let playing = false;
+
+function toggleMusic() {
+  if (playing) {
+    music.pause();
+  } else {
+    music.play();
+  }
+  playing = !playing;
+}
+</script>
+
+</body>
+</html>
