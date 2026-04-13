@@ -14,22 +14,54 @@ body {
   overflow-x: hidden;
 }
 
-/* CLOUDS */
+/* CLOUDS (FIXED FINAL VERSION) */
 .cloud {
   position: fixed;
-  background: rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.22);
   border-radius: 50%;
-  filter: blur(18px);
+  filter: blur(22px);
   z-index: 0;
+  opacity: 0.9;
+  pointer-events: none;
 }
 
-.c1 { width: 180px; height: 60px; top: 15%; left: -200px; animation: move 90s linear infinite; }
-.c2 { width: 240px; height: 70px; top: 45%; left: -300px; animation: move 120s linear infinite; }
-.c3 { width: 160px; height: 50px; top: 70%; left: -250px; animation: move 100s linear infinite; }
+.c1 {
+  width: 220px;
+  height: 70px;
+  top: 12%;
+  left: -250px;
+  animation: drift1 65s linear infinite;
+}
 
-@keyframes move {
+.c2 {
+  width: 300px;
+  height: 90px;
+  top: 45%;
+  left: -400px;
+  animation: drift2 90s linear infinite;
+}
+
+.c3 {
+  width: 200px;
+  height: 65px;
+  top: 75%;
+  left: -300px;
+  animation: drift3 75s linear infinite;
+}
+
+@keyframes drift1 {
   0% { transform: translateX(0); }
-  100% { transform: translateX(160vw); }
+  100% { transform: translateX(200vw); }
+}
+
+@keyframes drift2 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(220vw); }
+}
+
+@keyframes drift3 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(180vw); }
 }
 
 /* HERO */
