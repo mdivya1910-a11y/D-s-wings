@@ -9,30 +9,73 @@
 body {
   margin: 0;
   font-family: system-ui, Arial;
+  background: #05060c;
   color: white;
-  background: linear-gradient(180deg, #050814, #0a1630, #05060a);
   overflow-x: hidden;
 }
 
-/* CLOUDS */
-.cloud {
+/* ===================== */
+/* LOADING CINEMATIC LOGO */
+/* ===================== */
+
+.intro {
   position: fixed;
-  background: rgba(255,255,255,0.12);
-  border-radius: 50%;
-  filter: blur(18px);
-  z-index: 0;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeOut 2.5s ease forwards 2.5s;
 }
 
-.c1 { width: 180px; height: 60px; top: 15%; left: -200px; animation: move 80s linear infinite; }
-.c2 { width: 240px; height: 70px; top: 45%; left: -300px; animation: move 110s linear infinite; }
-.c3 { width: 160px; height: 50px; top: 70%; left: -250px; animation: move 95s linear infinite; }
+.logo {
+  font-size: 28px;
+  letter-spacing: 6px;
+  opacity: 0;
+  animation: logoIn 2s ease forwards;
+}
+
+@keyframes logoIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* ===================== */
+/* PARALLAX BACKGROUND   */
+/* ===================== */
+
+.layer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  filter: blur(20px);
+}
+
+.c1 { width: 200px; height: 60px; top: 20%; left: -200px; animation: move 80s linear infinite; }
+.c2 { width: 260px; height: 70px; top: 50%; left: -300px; animation: move 110s linear infinite; }
+.c3 { width: 180px; height: 50px; top: 75%; left: -250px; animation: move 95s linear infinite; }
 
 @keyframes move {
   0% { transform: translateX(0); }
-  100% { transform: translateX(150vw); }
+  100% { transform: translateX(160vw); }
 }
 
-/* HERO */
+/* ===================== */
+/* HERO SECTION          */
+/* ===================== */
+
 .hero {
   height: 100vh;
   display: flex;
@@ -43,75 +86,67 @@ body {
   position: relative;
 }
 
-/* cinematic sweep */
-.hero::after {
-  content: "";
-  position: absolute;
-  width: 40%;
-  height: 200%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
-  transform: rotate(25deg);
-  animation: sweep 7s ease-in-out;
-}
-
-@keyframes sweep {
-  0% { transform: translateX(-200%) rotate(25deg); }
-  100% { transform: translateX(200%) rotate(25deg); }
-}
-
-/* QUOTE */
 .quote {
   font-size: 22px;
-  margin-bottom: 25px;
   opacity: 0;
-  animation: fadeIn 2.5s forwards;
+  animation: fadeUp 2s ease forwards 3s;
   max-width: 700px;
   padding: 0 20px;
 }
 
-@keyframes fadeIn {
-  to { opacity: 0.9; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 0.9; transform: translateY(0); }
 }
 
-/* BIRD */
+/* ===================== */
+/* CINEMATIC BIRD        */
+/* ===================== */
+
 .bird {
   width: 260px;
-  animation: float 4s ease-in-out infinite, pop 1.8s ease forwards;
+  opacity: 0;
+  transform: scale(0.7);
+  animation: birdIn 2s ease forwards 3.2s, float 4s ease-in-out infinite 5s;
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
+}
+
+@keyframes birdIn {
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-10px); }
 }
 
-@keyframes pop {
-  from { opacity: 0; transform: scale(0.6); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* wings */
 .wing {
-  animation: flap 1.4s ease-in-out infinite;
+  animation: flap 1.3s ease-in-out infinite;
   transform-origin: center;
 }
 
 @keyframes flap {
-  0%,100% { transform: rotate(-5deg); }
-  50% { transform: rotate(15deg); }
+  0%,100% { transform: rotate(-6deg); }
+  50% { transform: rotate(16deg); }
 }
 
-/* SECTIONS */
+/* ===================== */
+/* SECTIONS              */
+/* ===================== */
+
 .section {
-  padding: 60px 20px;
+  padding: 80px 20px;
   max-width: 900px;
   margin: auto;
   text-align: center;
-  position: relative;
-  z-index: 2;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
 }
 
-h2 {
-  margin-bottom: 20px;
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .card {
@@ -121,7 +156,10 @@ h2 {
   border-radius: 12px;
 }
 
-/* MUSIC BUTTON */
+/* ===================== */
+/* MUSIC BUTTON          */
+/* ===================== */
+
 .music-btn {
   position: fixed;
   bottom: 20px;
@@ -132,121 +170,11 @@ h2 {
   background: rgba(255,255,255,0.1);
   color: white;
   cursor: pointer;
-  z-index: 10;
   animation: pulse 2.5s infinite;
+  z-index: 10;
 }
 
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
   50% { box-shadow: 0 0 20px 6px rgba(255,255,255,0.12); }
-  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
-}
-</style>
-</head>
-
-<body>
-
-<!-- CLOUDS -->
-<div class="cloud c1"></div>
-<div class="cloud c2"></div>
-<div class="cloud c3"></div>
-
-<!-- HERO -->
-<div class="hero">
-
-  <div class="quote">
-    “She took the leap and built her wings on the way down.”
-  </div>
-
-  <!-- CLEAN HAPPY PIGEON -->
-  <svg class="bird" viewBox="0 0 200 200">
-
-    <!-- body -->
-    <ellipse cx="100" cy="110" rx="26" ry="38" fill="white"/>
-
-    <!-- head -->
-    <circle cx="122" cy="88" r="10" fill="white"/>
-
-    <!-- beak -->
-    <polygon points="132,88 148,92 132,96" fill="white"/>
-
-    <!-- eye -->
-    <circle cx="124" cy="86" r="2" fill="black"/>
-
-    <!-- wings -->
-    <ellipse class="wing" cx="80" cy="112" rx="32" ry="18" fill="white"/>
-    <ellipse class="wing" cx="120" cy="112" rx="32" ry="18" fill="white"/>
-
-  </svg>
-
-</div>
-
-<!-- ABOUT -->
-<div class="section">
-  <h2>About Me</h2>
-  <p style="opacity:0.85;">
-    Divya Prakash Mundkar<br>
-    Computer Engineer | Creative Developer<br>
-    I build cinematic web experiences using HTML, CSS & SVG.
-  </p>
-</div>
-
-<!-- PROJECTS -->
-<div class="section">
-  <h2>My Creation</h2>
-
-  <div class="card">
-    <h3>My Wings</h3>
-    <p>Cinematic animated SVG project</p>
-    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank" style="color:#66ccff;">
-      View Project →
-    </a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div class="section">
-  <p style="opacity:0.6;">Built by M. Divya ✨</p>
-</div>
-
-<!-- MUSIC -->
-<audio id="music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<button class="music-btn" onclick="toggleMusic()" id="btn">
-🎵 click me
-</button>
-
-<script>
-const music = document.getElementById("music");
-const btn = document.getElementById("btn");
-
-const key = "global_music";
-
-window.addEventListener("load", () => {
-  if (localStorage.getItem(key) === "playing") {
-    music.play();
-    btn.innerText = "⏸ click me";
-  }
-});
-
-function toggleMusic() {
-  if (music.paused) {
-    music.play();
-    localStorage.setItem(key, "playing");
-    btn.innerText = "⏸ click me";
-  } else {
-    music.pause();
-    localStorage.setItem(key, "paused");
-    btn.innerText = "🎵 click me";
-  }
-}
-
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) music.pause();
-});
-</script>
-
-</body>
-</html>
+  100% { box-shadow: 0
