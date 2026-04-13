@@ -8,13 +8,19 @@
 <style>
 body {
   margin: 0;
-  background: #000;
+  background: linear-gradient(
+    180deg,
+    #05070f 0%,
+    #0b1630 35%,
+    #0a1b2e 70%,
+    #05060a 100%
+  );
   color: white;
   font-family: system-ui, Arial;
   overflow-x: hidden;
 }
 
-/* HERO STAGE */
+/* HERO */
 .hero {
   height: 100vh;
   display: flex;
@@ -23,91 +29,26 @@ body {
   flex-direction: column;
   text-align: center;
   position: relative;
-  overflow: hidden;
 }
 
-/* DARK BASE */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center,
-    rgba(255,255,255,0.06),
-    rgba(0,0,0,0.96) 70%);
-  z-index: 0;
-}
-
-/* LIGHT REVEAL SWEEP */
-.hero::after {
-  content: "";
-  position: absolute;
-  width: 40%;
-  height: 200%;
-  background: linear-gradient(120deg,
-    transparent,
-    rgba(255,255,255,0.10),
-    transparent);
-  transform: rotate(25deg);
-  animation: sweep 5s ease-in-out forwards;
-  z-index: 0;
-}
-
-@keyframes sweep {
-  0% { transform: translateX(-200%) rotate(25deg); opacity: 0; }
-  40% { opacity: 1; }
-  100% { transform: translateX(200%) rotate(25deg); opacity: 0; }
-}
-
-/* QUOTE (fade in later) */
+/* QUOTE */
 .quote {
   font-size: clamp(18px, 2.5vw, 26px);
-  opacity: 0;
+  opacity: 0.9;
   margin-bottom: 30px;
   max-width: 700px;
   padding: 0 20px;
-  animation: fadeInText 2.5s ease forwards;
-  animation-delay: 2.2s;
-  z-index: 2;
 }
 
-@keyframes fadeInText {
-  to { opacity: 0.9; }
-}
-
-/* BIRD REVEAL */
+/* BIRD */
 .bird {
   width: 260px;
-  opacity: 0;
-  transform: scale(0.3) translateY(60px);
-  filter: drop-shadow(0 0 0 rgba(255,255,255,0));
-  animation: reveal 2.8s ease forwards;
-  animation-delay: 0.8s;
-  z-index: 2;
+  animation: float 4.5s ease-in-out infinite;
 }
 
-/* CINEMATIC REVEAL MOTION */
-@keyframes reveal {
-  0% {
-    opacity: 0;
-    transform: scale(0.3) translateY(60px);
-    filter: drop-shadow(0 0 0 rgba(255,255,255,0));
-  }
-  60% {
-    opacity: 1;
-    transform: scale(1.08) translateY(-10px);
-    filter: drop-shadow(0 0 25px rgba(255,255,255,0.25));
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: drop-shadow(0 0 18px rgba(255,255,255,0.15));
-  }
-}
-
-/* SOFT BREATH AFTER INTRO */
 @keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%,100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-16px) rotate(1deg); }
 }
 
 /* WINGS */
@@ -115,7 +56,6 @@ body {
   transform-origin: 100px 100px;
   animation: flapLeft 1.6s ease-in-out infinite;
 }
-
 .wing-right {
   transform-origin: 100px 100px;
   animation: flapRight 1.4s ease-in-out infinite;
@@ -125,7 +65,6 @@ body {
   0%,100% { transform: rotate(-2deg); }
   50% { transform: rotate(18deg); }
 }
-
 @keyframes flapRight {
   0%,100% { transform: rotate(2deg); }
   50% { transform: rotate(-16deg); }
@@ -155,6 +94,7 @@ h2 {
   text-decoration: none;
 }
 
+/* FOOTER */
 .footer {
   text-align: center;
   padding: 20px;
@@ -173,122 +113,10 @@ h2 {
   cursor: pointer;
   font-size: 14px;
   color: white;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
   animation: pulse 2.5s infinite;
 }
 
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.15); }
   50% { box-shadow: 0 0 18px 6px rgba(255,255,255,0.08); }
-  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.15); }
-}
-</style>
-</head>
-
-<body>
-
-<div class="hero">
-
-  <div class="quote">
-    “She took the leap and built her wings on the way down.”
-  </div>
-
-  <!-- HAPPY CINEMATIC BIRD -->
-  <svg class="bird" viewBox="0 0 200 200">
-
-    <path d="M100 62
-             C82 72, 72 100, 78 120
-             C85 145, 105 150, 118 135
-             C132 120, 130 95, 118 78
-             C112 70, 108 64, 100 62"
-          fill="white"/>
-
-    <circle cx="122" cy="68" r="8" fill="white"/>
-
-    <path d="M128 69 C135 70, 135 74, 128 75 Z"
-          fill="white"/>
-
-    <path d="M120 67 Q122 65 124 67"
-          stroke="black" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-
-    <g class="wing-left">
-      <path d="M95 92
-               C45 65, 40 115, 90 118
-               C65 110, 60 88, 95 92"
-            fill="white" opacity="0.95"/>
-    </g>
-
-    <g class="wing-right">
-      <path d="M105 92
-               C155 65, 160 115, 110 118
-               C135 110, 140 88, 105 92"
-            fill="white" opacity="0.95"/>
-    </g>
-
-    <path d="M82 118
-             C60 120, 55 132, 78 138
-             C88 132, 88 122, 82 118"
-          fill="white" opacity="0.9"/>
-
-  </svg>
-
-</div>
-
-<div class="section">
-  <h2>About Me</h2>
-  <p style="text-align:center; opacity:0.8;">
-    Divya Prakash Mundkar<br>
-    Computer Engineer rebuilding her craft.<br>
-    I create interactive experiences using HTML, CSS & SVG.
-  </p>
-</div>
-
-<div class="section">
-  <h2>Projects</h2>
-
-  <div class="card">
-    <h3>My Wings</h3>
-    <p>Animated SVG cinematic pigeon project.</p>
-    <a href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank">
-      View Project →
-    </a>
-  </div>
-
-</div>
-
-<div class="footer">
-  Built by M. Divya ✨
-</div>
-
-<audio id="music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<button class="music-btn" onclick="toggleMusic()" id="btn">
-  🎵 click me
-</button>
-
-<script>
-const music = document.getElementById("music");
-const btn = document.getElementById("btn");
-
-music.volume = 0.3;
-
-function toggleMusic() {
-  if (music.paused) {
-    music.play();
-    btn.innerHTML = "⏸ click me";
-  } else {
-    music.pause();
-    btn.innerHTML = "🎵 click me";
-  }
-}
-</script>
-
-</body>
-</html>
+  100% { box-shadow: 0 0 0 0 rgba(255,
