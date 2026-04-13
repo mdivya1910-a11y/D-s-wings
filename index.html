@@ -21,7 +21,6 @@ body {
   border-radius: 50%;
   filter: blur(16px);
   z-index: 1;
-  opacity: 1;
   pointer-events: none;
   mix-blend-mode: screen;
 }
@@ -47,29 +46,16 @@ body {
 
 /* HERO */
 .hero {
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   position: relative;
-  padding: 60px 20px;
-  margin-bottom: 40px;
+  padding: 50px 20px 20px;
+  margin-bottom: 0;   /* IMPORTANT: reduced gap */
   z-index: 2;
-}
-
-/* HERO FADE (IMPORTANT UX FIX) */
-.hero::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.25));
-  pointer-events: none;
 }
 
 /* QUOTE */
@@ -105,7 +91,7 @@ body {
 
 /* SECTIONS */
 .section {
-  padding: 80px 20px;
+  padding: 60px 20px;   /* IMPORTANT: reduced from 80px */
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
@@ -113,6 +99,7 @@ body {
   z-index: 2;
 }
 
+/* CARD */
 .card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
