@@ -22,6 +22,7 @@ body {
   align-items: center;
   flex-direction: column;
   text-align: center;
+  position: relative;
 }
 
 /* QUOTE */
@@ -35,11 +36,10 @@ body {
 
 /* BIRD */
 .bird {
-  width: 240px;
+  width: 260px;
   animation: float 4.5s ease-in-out infinite;
 }
 
-/* FLOAT */
 @keyframes float {
   0%,100% { transform: translateY(0) rotate(-1deg); }
   50% { transform: translateY(-16px) rotate(1deg); }
@@ -48,22 +48,22 @@ body {
 /* WINGS */
 .wing-left {
   transform-origin: 100px 100px;
-  animation: flapLeft 1.7s ease-in-out infinite;
+  animation: flapLeft 1.6s ease-in-out infinite;
 }
 
 .wing-right {
   transform-origin: 100px 100px;
-  animation: flapRight 1.5s ease-in-out infinite;
+  animation: flapRight 1.4s ease-in-out infinite;
 }
 
 @keyframes flapLeft {
   0%,100% { transform: rotate(-2deg); }
-  50% { transform: rotate(20deg); }
+  50% { transform: rotate(18deg); }
 }
 
 @keyframes flapRight {
   0%,100% { transform: rotate(2deg); }
-  50% { transform: rotate(-18deg); }
+  50% { transform: rotate(-16deg); }
 }
 
 /* SECTION */
@@ -110,6 +110,12 @@ h2 {
   cursor: pointer;
   font-size: 16px;
   color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1;
 }
 </style>
 </head>
@@ -123,56 +129,56 @@ h2 {
     “She took the leap and built her wings on the way down.”
   </div>
 
-  <!-- WHITE PIGEON -->
+  <!-- BIRD -->
   <svg class="bird" viewBox="0 0 200 200">
 
     <!-- BODY -->
     <path d="M100 60
-             C78 75, 72 110, 88 135
-             C95 150, 105 150, 112 135
-             C128 110, 122 75, 100 60"
+             C80 70, 70 95, 78 115
+             C85 135, 105 145, 118 135
+             C130 125, 132 105, 120 90
+             C112 78, 110 65, 100 60"
           fill="white"/>
 
     <!-- HEAD -->
-    <circle cx="112" cy="62" r="7" fill="white"/>
+    <circle cx="120" cy="70" r="7" fill="white"/>
 
     <!-- BEAK -->
-    <path d="M118 64 L128 68 L118 70 Z" fill="white"/>
+    <path d="M127 71 L138 75 L127 78 Z" fill="white"/>
 
     <!-- EYE -->
-    <circle cx="114" cy="61" r="1.6" fill="black"/>
-    <circle cx="115" cy="60" r="0.5" fill="white"/>
+    <circle cx="122" cy="69" r="1.6" fill="black"/>
 
     <!-- LEFT WING -->
     <g class="wing-left">
-      <path d="M92 95
-               C40 70, 35 120, 88 120
-               C60 110, 60 90, 92 95"
+      <path d="M95 95
+               C45 65, 40 115, 90 118
+               C70 110, 65 90, 95 95"
             fill="white" opacity="0.95"/>
 
-      <path d="M90 105
-               C55 90, 55 120, 88 118
-               C65 112, 65 100, 90 105"
+      <path d="M92 105
+               C55 90, 55 120, 88 120
+               C70 114, 68 100, 92 105"
             fill="white" opacity="0.6"/>
     </g>
 
     <!-- RIGHT WING -->
     <g class="wing-right">
-      <path d="M108 95
-               C160 70, 165 120, 112 120
-               C140 110, 140 90, 108 95"
+      <path d="M105 95
+               C155 65, 160 115, 110 118
+               C130 110, 135 90, 105 95"
             fill="white" opacity="0.95"/>
 
-      <path d="M110 105
-               C145 90, 145 120, 112 118
-               C135 112, 135 100, 110 105"
+      <path d="M108 105
+               C145 90, 145 120, 112 120
+               C130 114, 132 100, 108 105"
             fill="white" opacity="0.6"/>
     </g>
 
     <!-- TAIL -->
-    <path d="M88 135
-             C70 140, 65 150, 85 150
-             C90 145, 92 140, 88 135"
+    <path d="M80 115
+             C60 120, 55 130, 75 135
+             C85 130, 85 120, 80 115"
           fill="white" opacity="0.9"/>
 
   </svg>
@@ -213,7 +219,9 @@ h2 {
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<button class="music-btn" onclick="toggleMusic()" id="btn">🎵</button>
+<button class="music-btn" onclick="toggleMusic()" id="btn">
+  🎵 <span style="font-size:10px; opacity:0.8;">click me</span>
+</button>
 
 <script>
 const music = document.getElementById("music");
@@ -224,10 +232,10 @@ music.volume = 0.3;
 function toggleMusic() {
   if (music.paused) {
     music.play();
-    btn.innerText = "⏸";
+    btn.innerText = "⏸ click me";
   } else {
     music.pause();
-    btn.innerText = "🎵";
+    btn.innerText = "🎵 click me";
   }
 }
 </script>
