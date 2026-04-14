@@ -5,33 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>M. Divya — Creative Developer</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Raleway&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --bg: #0a0a0f;
   --surface: #13131a;
   --border: #2a2a38;
-  --white: rgba(255,255,255,0.88);
-  --muted: rgba(255,255,255,0.4);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  --white: rgba(255,255,255,0.9);
+  --muted: rgba(255,255,255,0.5);
 }
 
 body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
   background: var(--bg);
   color: var(--white);
-  font-family: 'Raleway', sans-serif;
-  overflow-x: hidden;
 }
 
-/* STAR BACKGROUND */
+/* STARS */
 body::before {
   content: '';
   position: fixed;
@@ -39,120 +31,66 @@ body::before {
   background-image: radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px);
   background-size: 40px 40px;
   opacity: 0.15;
-  z-index: 0;
 }
 
 /* HERO */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 100px 8vw;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-tag {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--muted);
+  padding: 80px 8vw 40px; /* FIXED GAP */
 }
 
 .hero-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: 42px;
-  margin: 12px 0;
+}
+
+.hero-tag {
+  letter-spacing: 0.2em;
+  font-size: 12px;
+  color: var(--muted);
 }
 
 .hero-bio {
-  font-size: 15px;
   color: var(--muted);
-  line-height: 1.6;
+  margin-top: 10px;
 }
 
 /* SECTION */
 .section {
-  padding: 80px 8vw;
-  position: relative;
-  z-index: 2;
-}
-
-.section h2 {
-  font-family: 'Cormorant Garamond', serif;
-  margin-bottom: 30px;
+  padding: 60px 8vw;
 }
 
 /* PROJECTS */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+  gap: 20px;
 }
 
 .project-card {
-  padding: 30px;
-  background: var(--surface);
+  padding: 25px;
   border: 1px solid var(--border);
+  background: var(--surface);
   border-radius: 10px;
   text-decoration: none;
-  color: inherit;
-  transition: all 0.3s ease;
+  color: white;
+  transition: 0.3s;
 }
 
 .project-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(255,255,255,0.25);
+  transform: translateY(-5px);
 }
 
-.project-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  margin-bottom: 10px;
-}
-
-.project-card p {
-  font-size: 14px;
+/* ABOUT FIX */
+.about {
+  max-width: 600px;
   color: var(--muted);
-  margin-bottom: 12px;
-}
-
-.tag {
-  font-size: 10px;
-  border: 1px solid var(--border);
-  padding: 4px 8px;
-  margin-right: 6px;
-}
-
-/* ABOUT */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  font-size: 14px;
-  color: var(--muted);
+  line-height: 1.6;
 }
 
 /* FOOTER */
 footer {
   padding: 40px 8vw;
   border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
   color: var(--muted);
-}
-
-/* MUSIC BUTTON */
-.music-btn {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  border: 1px solid rgba(255,255,255,0.2);
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-  background: rgba(255,255,255,0.05);
 }
 </style>
 </head>
@@ -161,12 +99,11 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-tag">Creative Developer</p>
-  <h1 class="hero-name">Divya Prakash Mundkar</h1>
-  <p class="hero-bio">
-    Turning imagination into motion —<br>
-    one line of code at a time.
-  </p>
+  <div class="hero-tag">Creative Developer</div>
+  <div class="hero-name">Divya Prakash Mundkar</div>
+  <div class="hero-bio">
+    Turning imagination into motion through code.
+  </div>
 </section>
 
 <!-- PROJECTS -->
@@ -176,23 +113,13 @@ footer {
   <div class="projects-grid">
 
     <a class="project-card" href="https://mdivya1910-a11y.github.io/My-wings/" target="_blank">
-      <h3>🦋 My Wings</h3>
-      <p>Cinematic butterfly SVG animation with pulsing glow, flapping wings and background music.</p>
-      <div>
-        <span class="tag">HTML</span>
-        <span class="tag">CSS</span>
-        <span class="tag">SVG</span>
-      </div>
+      🦋 My Wings<br>
+      <small>SVG animation with music</small>
     </a>
 
     <a class="project-card" href="https://mdivya1910-a11y.github.io/D-s-wings/" target="_blank">
-      <h3>🕊️ White Pigeon</h3>
-      <p>Glowing white pigeon SVG animation with soft wing flap, floating motion and soulful music.</p>
-      <div>
-        <span class="tag">HTML</span>
-        <span class="tag">CSS</span>
-        <span class="tag">SVG</span>
-      </div>
+      🕊️ White Pigeon<br>
+      <small>SVG animation with music</small>
     </a>
 
   </div>
@@ -202,40 +129,19 @@ footer {
 <section class="section">
   <h2>About</h2>
 
-  <div class="about-grid">
-    <div>
-      I'm a creative developer with a passion for building motion-driven web experiences.
-    </div>
-    <div>
-      HTML · CSS · SVG · GitHub
-    </div>
+  <div class="about">
+    I'm a creative developer focused on building motion-driven web experiences using HTML, CSS and SVG.
+    <br><br>
+    I enjoy turning simple ideas into clean, interactive visuals with attention to motion and detail.
+    <br><br>
+    Built and deployed using GitHub.
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div>M. Divya 🫰</div>
-  <div>Built with HTML · CSS · SVG · GitHub Pages</div>
+  M. Divya — Built with HTML · CSS · SVG
 </footer>
-
-<!-- MUSIC -->
-<audio id="bg-music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<div class="music-btn" onclick="toggleMusic()">🎵</div>
-
-<script>
-const music = document.getElementById('bg-music');
-
-function toggleMusic() {
-  if (music.paused) {
-    music.play();
-  } else {
-    music.pause();
-  }
-}
-</script>
 
 </body>
 </html>
