@@ -1,153 +1,232 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>My Wings | Divya</title>  <style>  
-body {  
-  margin: 0;  
-  font-family: system-ui, Arial;  
-  color: white;  
-  background: linear-gradient(180deg, #050814, #0a1630, #05060a);  
-  overflow-x: hidden;  
-}  
-  
-/* CLOUDS */  
-.cloud {  
-  position: fixed;  
-  background: radial-gradient(circle, rgba(255,255,255,0.6), rgba(255,255,255,0.05));  
-  border-radius: 50%;  
-  filter: blur(16px);  
-  z-index: 1;  
-  opacity: 1;  
-  pointer-events: none;  
-  mix-blend-mode: screen;  
-}  
-  
-.c1 { width: 240px; height: 80px; top: 12%; left: -260px; animation: drift1 60s linear infinite; }  
-.c2 { width: 320px; height: 100px; top: 45%; left: -420px; animation: drift2 85s linear infinite; }  
-.c3 { width: 220px; height: 70px; top: 75%; left: -300px; animation: drift3 95s linear infinite; }  
-  
-@keyframes drift1 {  
-  0% { transform: translateX(0); }  
-  100% { transform: translateX(220vw); }  
-}  
-  
-@keyframes drift2 {  
-  0% { transform: translateX(0); }  
-  100% { transform: translateX(240vw); }  
-}  
-  
-@keyframes drift3 {  
-  0% { transform: translateX(0); }  
-  100% { transform: translateX(200vw); }  
-}  
-  
-/* HERO */  
-.hero {  
-  min-height: 78vh;  
-  display: flex;  
-  flex-direction: column;  
-  justify-content: center;  
-  align-items: center;  
-  text-align: center;  
-  position: relative;  
-  padding: 40px 20px;  
-  z-index: 2;  
-}  
-  
-/* QUOTE */  
-.quote {  
-  font-size: 22px;  
-  margin-bottom: 15px;  
-  opacity: 0.9;  
-  max-width: 700px;  
-  padding: 0 20px;  
-}  
-  
-/* BIRD */  
-.bird {  
-  width: 260px;  
-  animation: float 4s ease-in-out infinite;  
-}  
-  
-@keyframes float {  
-  0%,100% { transform: translateY(0); }  
-  50% { transform: translateY(-12px); }  
-}  
-  
-/* WINGS */  
-.wing {  
-  animation: flap 1.4s ease-in-out infinite;  
-  transform-origin: center;  
-}  
-  
-@keyframes flap {  
-  0%,100% { transform: rotate(-5deg); }  
-  50% { transform: rotate(15deg); }  
-}  
-  
-/* SECTIONS */  
-.section {  
-  padding: 45px 20px;  
-  max-width: 900px;  
-  margin: auto;  
-  text-align: center;  
-  position: relative;  
-  z-index: 2;  
-}  
-  
-.card {  
-  background: rgba(255,255,255,0.05);  
-  border: 1px solid rgba(255,255,255,0.1);  
-  padding: 20px;  
-  border-radius: 12px;  
-}  
-  
-/* MUSIC BUTTON */  
-.music-btn {  
-  position: fixed;  
-  bottom: 20px;  
-  left: 20px;  
-  padding: 12px 14px;  
-  border-radius: 50%;  
-  border: 1px solid rgba(255,255,255,0.3);  
-  background: rgba(255,255,255,0.1);  
-  color: white;  
-  cursor: pointer;  
-  z-index: 10;  
-}  
-</style>  </head>  <body>  <!-- CLOUDS -->  <div class="cloud c1"></div>  
-<div class="cloud c2"></div>  
-<div class="cloud c3"></div>  <!-- HERO -->  <div class="hero">  
-  <div class="quote">  
-    “She took the leap and built her wings on the way down.”  
-  </div>    <svg class="bird" viewBox="0 0 200 200">  
-    <ellipse cx="100" cy="110" rx="26" ry="38" fill="white"/>  
-    <circle cx="122" cy="88" r="10" fill="white"/>  
-    <polygon points="132,88 148,92 132,96" fill="white"/>  
-    <circle cx="124" cy="86" r="2" fill="black"/>  
-    <ellipse class="wing" cx="80" cy="112" rx="32" ry="18" fill="white"/>  
-    <ellipse class="wing" cx="120" cy="112" rx="32" ry="18" fill="white"/>  
-  </svg>  
-</div>  <!-- ABOUT (UPDATED LINE ONLY) -->  <div class="section">  
-  <h2>About Me</h2>  
-  <p style="opacity:0.85;">  
-    Divya Prakash Mundkar<br>  
-    Creative Developer<br>  
-    Crafting motion-driven web interfaces using HTML, CSS & SVG.<br>  
-    Built and deployed projects using Git and GitHub.  
-  </p>  
-</div>  <!-- PROJECTS -->  <div class="section">  
-  <h2>My Creation</h2>    <div class="card">  
-    <h3>My Wings</h3>  
-    <p>Cinematic SVG animation project</p>  
-    <a href="https://mdivya1910-a11y.github.io/My-wings/" style="color:#66ccff;">  
-      View Project →  
-    </a>  
-  </div>  
-</div>  <!-- FOOTER -->  <div class="section">  
-  <p style="opacity:0.6; text-align:center;">  
-    Built by M. Divya ✨  
-  </p>  
-</div>  </body>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Wings | Divya</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, Arial;
+  color: white;
+  background: linear-gradient(180deg, #050814, #0a1630, #05060a);
+  overflow-x: hidden;
+}
+
+/* RESET */
+h1, h2, h3, p {
+  margin: 0;
+}
+
+/* CLOUDS */
+.cloud {
+  position: fixed;
+  background: radial-gradient(circle, rgba(255,255,255,0.6), rgba(255,255,255,0.05));
+  border-radius: 50%;
+  filter: blur(16px);
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.c1 { width: 240px; height: 80px; top: 12%; left: -260px; animation: drift1 60s linear infinite; }
+.c2 { width: 320px; height: 100px; top: 45%; left: -420px; animation: drift2 85s linear infinite; }
+.c3 { width: 220px; height: 70px; top: 75%; left: -300px; animation: drift3 95s linear infinite; }
+
+@keyframes drift1 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(220vw); }
+}
+
+@keyframes drift2 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(240vw); }
+}
+
+@keyframes drift3 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(200vw); }
+}
+
+/* HERO */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 30px 20px 5px;
+  margin-bottom: 0;
+  z-index: 2;
+}
+
+/* QUOTE */
+.quote {
+  font-size: 22px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+  max-width: 700px;
+  padding: 0 20px;
+}
+
+/* BIRD */
+.bird {
+  width: 260px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* WINGS */
+.wing {
+  animation: flap 1.4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes flap {
+  0%,100% { transform: rotate(-5deg); }
+  50% { transform: rotate(15deg); }
+}
+
+/* SECTIONS */
+.section {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* 2-TAB GAP FIX */
+.hero + .section {
+  margin-top: -8px;
+}
+
+/* TEXT */
+h2 {
+  margin-bottom: 8px;
+}
+
+p {
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* MUSIC BUTTON */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 12px 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
+  50% { box-shadow: 0 0 20px 6px rgba(255,255,255,0.12); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.2); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CLOUDS -->
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="quote">
+    “She took the leap and built her wings on the way down.”
+  </div>
+
+  <svg class="bird" viewBox="0 0 200 200">
+    <ellipse cx="100" cy="110" rx="26" ry="38" fill="white"/>
+    <circle cx="122" cy="88" r="10" fill="white"/>
+    <polygon points="132,88 148,92 132,96" fill="white"/>
+    <circle cx="124" cy="86" r="2" fill="black"/>
+    <ellipse class="wing" cx="80" cy="112" rx="32" ry="18" fill="white"/>
+    <ellipse class="wing" cx="120" cy="112" rx="32" ry="18" fill="white"/>
+  </svg>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+  <h2>About Me</h2>
+  <p>
+    Divya Prakash Mundkar<br>
+    Creative Developer<br>
+    Crafting motion-driven web interfaces using HTML, CSS & SVG.<br>
+    Hands-on GitHub deployment experience.
+  </p>
+</div>
+
+<!-- PROJECT -->
+<div class="section">
+  <h2>My Creation</h2>
+
+  <div class="card">
+    <h3>My Wings</h3>
+    <p>Cinematic SVG animation project</p>
+    <a href="https://mdivya1910-a11y.github.io/My-wings/" style="color:#66ccff;">
+      View Project →
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="section">
+  <p style="opacity:0.6;">
+    Built by M. Divya ✨
+  </p>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()" id="btn">
+🎵 click me
+</button>
+
+<script>
+const music = document.getElementById("music");
+const btn = document.getElementById("btn");
+
+function toggleMusic() {
+  if (music.paused) {
+    music.play();
+    btn.innerText = "⏸ click me";
+  } else {
+    music.pause();
+    btn.innerText = "🎵 click me";
+  }
+}
+</script>
+
+</body>
 </html>
